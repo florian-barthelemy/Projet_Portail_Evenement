@@ -23,13 +23,15 @@ namespace portal_project.Models
         public string Password { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
-        public int Adresse_Id { get; set; }
+        //public int Adresse_Id { get; set; }
+        
+        public virtual Adresse UserAdresse { get; set; }
 
         public User()
         {
         }
 
-        public User(int id, string nom, string prenom, string email, string password, bool isAdmin, int adresse_Id)
+        public User(int id, string nom, string prenom, string email, string password, bool isAdmin, Adresse userAdresse)
         {
             Id = id;
             Nom = nom;
@@ -37,7 +39,7 @@ namespace portal_project.Models
             Email = email;
             Password = password;
             IsAdmin = isAdmin;
-            Adresse_Id = adresse_Id;
+            UserAdresse = userAdresse;
         }
     }
 }
