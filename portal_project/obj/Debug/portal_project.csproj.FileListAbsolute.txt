@@ -11,16 +11,17 @@ E:\FORMATION CDA DAWAN\PROJET FINAL\portal_project\obj\Debug\portal_project.exe
 E:\FORMATION CDA DAWAN\PROJET FINAL\portal_project\obj\Debug\portal_project.pdb
 E:\FORMATION CDA DAWAN\PROJET FINAL\portal_project\obj\Debug\portal_project.Migrations.InitialModel.resources
 E:\FORMATION CDA DAWAN\PROJET FINAL\portal_project\obj\Debug\portal_project.csproj.GenerateResource.cache
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\portal_project.exe.config
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\portal_project.exe
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\portal_project.pdb
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\EntityFramework.dll
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\EntityFramework.SqlServer.dll
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\EntityFramework.xml
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\bin\Debug\EntityFramework.SqlServer.xml
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.csproj.AssemblyReference.cache
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.Migrations.InitialModel.resources
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.csproj.GenerateResource.cache
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.csproj.CoreCompileInputs.cache
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.exe
-E:\FORMATION CDA DAWAN\PROJET FINAL\projet_github\portal_project\obj\Debug\portal_project.pdb
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\portal_project.exe.config
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\portal_project.exe
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\portal_project.pdb
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\EntityFramework.dll
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\EntityFramework.xml
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.csproj.AssemblyReference.cache
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.Migrations.InitialModel.resources
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.csproj.GenerateResource.cache
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.csproj.CoreCompileInputs.cache
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.csproj.CopyComplete
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.exe
+C:\Users\Admin stagiaire.DESKTOP-8967908\Documents\Projet\portal_project\obj\Debug\portal_project.pdb

@@ -11,17 +11,13 @@ namespace portal_project.Models
     [Table("Adresse")]
     public class Adresse
     {
-        
-        [ForeignKey("User")]
-
+        [Key]
         public int Id { get; set; }
         [Required]
         public int[] Coordinates { get; set; }
         public string Voie { get; set; }
         public string CodePostal { get; set; }
         public string Ville { get; set; }
-
-        public virtual User User { get; set; }
 
         public Adresse(int id, int[] coordinates, string voie, string codePostal, string ville)
         {
