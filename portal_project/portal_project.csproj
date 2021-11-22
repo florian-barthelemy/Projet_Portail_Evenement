@@ -81,6 +81,10 @@
     <Compile Include="Migrations\202111221432489_AjoutCategorie.designer.cs">
       <DependentUpon>202111221432489_AjoutCategorie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111221613151_AjoutAgeMinEvent.cs" />
+    <Compile Include="Migrations\202111221613151_AjoutAgeMinEvent.designer.cs">
+      <DependentUpon>202111221613151_AjoutAgeMinEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111221432489_AjoutCategorie.resx">
       <DependentUpon>202111221432489_AjoutCategorie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221613151_AjoutAgeMinEvent.resx">
+      <DependentUpon>202111221613151_AjoutAgeMinEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
