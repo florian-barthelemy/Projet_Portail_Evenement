@@ -18,7 +18,11 @@ namespace portal_project.Models
         public string Voie { get; set; }
         public string CodePostal { get; set; }
         public string Ville { get; set; }
+        public virtual User User { get; set; }
 
+        public Adresse()
+        {
+        }
         public Adresse(int id, int[] coordinates, string voie, string codePostal, string ville)
         {
             Id = id;
@@ -28,9 +32,13 @@ namespace portal_project.Models
             CodePostal = codePostal;
             Ville = ville;
         }
-
-        public Adresse()
+        public Adresse(int[] coordinates, string voie, string codePostal, string ville)
         {
+            Coordinates[0] = coordinates[0];
+            Coordinates[1] = coordinates[1];
+            Voie = voie;
+            CodePostal = codePostal;
+            Ville = ville;
         }
     }
 }

@@ -26,6 +26,8 @@ namespace portal_project
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Categorie> Categories { get; set; }
+        public virtual DbSet<SousCategorie> SousCategories { get; set; }
     }
 
     //public class MyEntity

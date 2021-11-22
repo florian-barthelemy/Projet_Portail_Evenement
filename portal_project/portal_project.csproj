@@ -56,18 +56,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\AdresseImpl.cs" />
+    <Compile Include="Dao\CategorieImpl.cs" />
     <Compile Include="Dao\EventImpl.cs" />
+    <Compile Include="Dao\SousCategorieImpl.cs" />
     <Compile Include="Dao\UserImpl.cs" />
     <Compile Include="Metier\IAdresse.cs" />
+    <Compile Include="Metier\ICategorie.cs" />
     <Compile Include="Metier\IEvent.cs" />
+    <Compile Include="Metier\ISousCategorie.cs" />
     <Compile Include="Metier\IUser.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
       <DependentUpon>202111121625133_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111221347327_NewModels.cs" />
+    <Compile Include="Migrations\202111221347327_NewModels.designer.cs">
+      <DependentUpon>202111221347327_NewModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111221356316_NewModels2.cs" />
+    <Compile Include="Migrations\202111221356316_NewModels2.designer.cs">
+      <DependentUpon>202111221356316_NewModels2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111221432489_AjoutCategorie.cs" />
+    <Compile Include="Migrations\202111221432489_AjoutCategorie.designer.cs">
+      <DependentUpon>202111221432489_AjoutCategorie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
+    <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\SousCategorie.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Program.cs" />
@@ -80,6 +98,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111121625133_InitialModel.resx">
       <DependentUpon>202111121625133_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221347327_NewModels.resx">
+      <DependentUpon>202111221347327_NewModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221356316_NewModels2.resx">
+      <DependentUpon>202111221356316_NewModels2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221432489_AjoutCategorie.resx">
+      <DependentUpon>202111221432489_AjoutCategorie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

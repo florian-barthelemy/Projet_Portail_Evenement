@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Metier
 {
-    interface IUser
+    public interface IUser
     {
     }
 }
