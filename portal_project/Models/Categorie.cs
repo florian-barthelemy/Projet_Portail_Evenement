@@ -15,7 +15,6 @@ namespace portal_project.Models
         public int Id { get; set; }
         [Required]
         public string Libelle { get; set; }
-
         public Categorie()
         {
         }
