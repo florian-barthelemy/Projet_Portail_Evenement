@@ -14,7 +14,8 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int[] Coordinates { get; set; }
+        public double Axe_X { get; set; }
+        public double Axe_Y { get; set; }
         public string Voie { get; set; }
         public string CodePostal { get; set; }
         public string Ville { get; set; }
@@ -23,19 +24,19 @@ namespace portal_project.Models
         public Adresse()
         {
         }
-        public Adresse(int id, int[] coordinates, string voie, string codePostal, string ville)
+        public Adresse(int id, double axe_x, double axe_y, string voie, string codePostal, string ville)
         {
             Id = id;
-            Coordinates[0] = coordinates[0];
-            Coordinates[1] = coordinates[1];
+            Axe_X = axe_x;
+            Axe_Y = axe_y;
             Voie = voie;
             CodePostal = codePostal;
             Ville = ville;
         }
-        public Adresse(int[] coordinates, string voie, string codePostal, string ville)
+        public Adresse(double axe_x, double axe_y, string voie, string codePostal, string ville)
         {
-            Coordinates[0] = coordinates[0];
-            Coordinates[1] = coordinates[1];
+            Axe_X = axe_x;
+            Axe_Y = axe_y;
             Voie = voie;
             CodePostal = codePostal;
             Ville = ville;
