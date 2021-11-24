@@ -65,6 +65,7 @@
     <Compile Include="Metier\IEvent.cs" />
     <Compile Include="Metier\ISousCategorie.cs" />
     <Compile Include="Metier\IUser.cs" />
+    <Compile Include="Metier\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
       <DependentUpon>202111121625133_InitialModel.cs</DependentUpon>
@@ -100,6 +101,10 @@
     <Compile Include="Migrations\202111241319569_DatatypesForAll.cs" />
     <Compile Include="Migrations\202111241319569_DatatypesForAll.designer.cs">
       <DependentUpon>202111241319569_DatatypesForAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111241410472_EventPhotos.cs" />
+    <Compile Include="Migrations\202111241410472_EventPhotos.designer.cs">
+      <DependentUpon>202111241410472_EventPhotos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
@@ -142,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111241319569_DatatypesForAll.resx">
       <DependentUpon>202111241319569_DatatypesForAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111241410472_EventPhotos.resx">
+      <DependentUpon>202111241410472_EventPhotos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

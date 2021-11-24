@@ -32,6 +32,10 @@ namespace portal_project.Models
         [Required]
         [Range(0,18)]
         public int MinAge { get; set; }
+        /*
+        [DataType(DataType.ImageUrl)]
+        [FileExtensions(Extensions = "png,jpg,jpeg,gif")]
+        public List<string> Photos { get; set; }*/
         public Event()
         {
         }
@@ -48,7 +52,7 @@ namespace portal_project.Models
             Participants = participants;
             Intervenants = intervenants;
             Creator = creator;
-            this.Tarif = tarif;
+            Tarif = tarif;
             MinAge = minAge;
         }
 
