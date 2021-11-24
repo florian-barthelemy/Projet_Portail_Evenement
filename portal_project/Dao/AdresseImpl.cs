@@ -14,8 +14,13 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createAdress(Adresse adresse)
         {
-            context.Adresses.Add(adresse);
-            context.SaveChanges();
+            Adresse adr = context.Adresses.SingleOrDefault(ad => ad.Id == adresse.Id);
+            if (adr == null)
+            {
+                context.Adresses.Add(adresse);
+                context.SaveChanges();
+            }
+            
             
         }
 
@@ -43,17 +48,17 @@ namespace portal_project.Dao
 
         public List<Adresse> findByCodePostal(string code_postal)
         {
-            throw new NotImplementedException();
+            return context.Adresses.AsNoTracking().Where( adr => adr.CodePostal.Equals(code_postal) ).ToList();
         }
 
         public List<Adresse> findByVille(string ville)
         {
-            throw new NotImplementedException();
+            return context.Adresses.AsNoTracking().Where( adr => adr.Ville.Contains(ville) ).ToList();
         }
 
-        public Adresse findOneByCoordinates(int[] coordinates)
+        public Adresse findOneByCoordinates(double axe_x, double axe_y)
         {
-            throw new NotImplementedException();
+            return (Adresse) context.Adresses.AsNoTracking().Where( adr => adr.Axe_X.Equals(axe_x) && adr.Axe_Y.Equals(axe_y) );
         }
 
         public Adresse findOneById(int id)
@@ -64,7 +69,7 @@ namespace portal_project.Dao
 
         public List<Adresse> getAllAdresses()
         {
-            throw new NotImplementedException();
+            return context.Adresses.ToList();
         }
     }
 }

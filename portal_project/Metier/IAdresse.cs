@@ -14,7 +14,7 @@ namespace portal_project.Metier
         void deleteAdresse(int id_adresse);
         List<Adresse> getAllAdresses();
         Adresse findOneById(int id);
-        Adresse findOneByCoordinates(int[] coordinates);
+        Adresse findOneByCoordinates(double axe_x, double axe_y);
         List<Adresse> findByVille(string ville);
         List<Adresse> findByCodePostal(string code_postal);
 
