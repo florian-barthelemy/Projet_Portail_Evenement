@@ -14,7 +14,7 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createAdress(Adresse adresse)
         {
-            Adresse adr = context.Adresses.SingleOrDefault(ad => ad.Id == adresse.Id);
+            Adresse adr = context.Adresses.FirstOrDefault(ad => ad.Axe_X == adresse.Axe_X && ad.Axe_Y == adresse.Axe_Y);
             if (adr == null)
             {
                 context.Adresses.Add(adresse);

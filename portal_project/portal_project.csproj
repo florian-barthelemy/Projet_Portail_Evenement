@@ -93,6 +93,10 @@
     <Compile Include="Migrations\202111240916166_Ajout_User_dateNais_MainAdresse.designer.cs">
       <DependentUpon>202111240916166_Ajout_User_dateNais_MainAdresse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111240922303_AdresseRequiredTypes.cs" />
+    <Compile Include="Migrations\202111240922303_AdresseRequiredTypes.designer.cs">
+      <DependentUpon>202111240922303_AdresseRequiredTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111240916166_Ajout_User_dateNais_MainAdresse.resx">
       <DependentUpon>202111240916166_Ajout_User_dateNais_MainAdresse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111240922303_AdresseRequiredTypes.resx">
+      <DependentUpon>202111240922303_AdresseRequiredTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

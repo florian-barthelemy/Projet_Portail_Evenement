@@ -15,9 +15,13 @@ namespace portal_project.Models
         public int Id { get; set; }
         [Required]
         public double Axe_X { get; set; }
+        [Required]
         public double Axe_Y { get; set; }
+        [Required]
         public string Voie { get; set; }
+        [Required]
         public string CodePostal { get; set; }
+        [Required]
         public string Ville { get; set; }
         public virtual User User { get; set; }
 
