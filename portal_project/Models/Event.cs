@@ -32,16 +32,13 @@ namespace portal_project.Models
         [Required]
         [Range(0,18)]
         public int MinAge { get; set; }
-        /*
-        [DataType(DataType.ImageUrl)]
-        [FileExtensions(Extensions = "png,jpg,jpeg,gif")]
-        public List<string> Photos { get; set; }*/
+        public virtual List<Photo> PhotosEvent { get; set; }
         public Event()
         {
         }
         public Event(int id, string titre, string description,
                     Adresse eventAdresse, DateTime dateDebut, DateTime dateFin,
-                    List<User> participants, List<User> intervenants, User creator, double tarif, int minAge)
+                    List<User> participants, List<User> intervenants, User creator, double tarif, int minAge, List<Photo> photosEvent)
         {
             Id = id;
             Titre = titre;
@@ -54,9 +51,10 @@ namespace portal_project.Models
             Creator = creator;
             Tarif = tarif;
             MinAge = minAge;
+            PhotosEvent = photosEvent;
         }
 
-        public Event(string titre, string description, Adresse eventAdresse, DateTime dateDebut, DateTime dateFin, List<User> participants, List<User> intervenants, User creator, double tarif, int minAge)
+        public Event(string titre, string description, Adresse eventAdresse, DateTime dateDebut, DateTime dateFin, List<User> participants, List<User> intervenants, User creator, double tarif, int minAge, List<Photo> photosEvent)
         {
             Titre = titre;
             Description = description;
@@ -68,6 +66,7 @@ namespace portal_project.Models
             Creator = creator;
             Tarif = tarif;
             MinAge = minAge;
+            PhotosEvent = photosEvent;
         }
     }
 }

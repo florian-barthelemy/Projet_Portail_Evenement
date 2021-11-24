@@ -58,14 +58,20 @@
     <Compile Include="Dao\AdresseImpl.cs" />
     <Compile Include="Dao\CategorieImpl.cs" />
     <Compile Include="Dao\EventImpl.cs" />
+    <Compile Include="Dao\PhotoImpl.cs" />
     <Compile Include="Dao\SousCategorieImpl.cs" />
     <Compile Include="Dao\UserImpl.cs" />
     <Compile Include="Metier\IAdresse.cs" />
     <Compile Include="Metier\ICategorie.cs" />
     <Compile Include="Metier\IEvent.cs" />
+    <Compile Include="Metier\IPhoto.cs" />
     <Compile Include="Metier\ISousCategorie.cs" />
     <Compile Include="Metier\IUser.cs" />
-    <Compile Include="Metier\Photo.cs" />
+    <Compile Include="Migrations\202111241551570_EventPhotos2.cs" />
+    <Compile Include="Migrations\202111241551570_EventPhotos2.designer.cs">
+      <DependentUpon>202111241551570_EventPhotos2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
       <DependentUpon>202111121625133_InitialModel.cs</DependentUpon>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111241410472_EventPhotos.resx">
       <DependentUpon>202111241410472_EventPhotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111241551570_EventPhotos2.resx">
+      <DependentUpon>202111241551570_EventPhotos2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

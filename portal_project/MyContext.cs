@@ -28,6 +28,7 @@ namespace portal_project
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Categorie> Categories { get; set; }
         public virtual DbSet<SousCategorie> SousCategories { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
     }
 
     //public class MyEntity
