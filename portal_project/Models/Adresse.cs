@@ -18,10 +18,13 @@ namespace portal_project.Models
         [Required]
         public double Axe_Y { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Voie { get; set; }
         [Required]
+        [DataType(DataType.PostalCode)]
         public string CodePostal { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Ville { get; set; }
         public virtual User User { get; set; }
 

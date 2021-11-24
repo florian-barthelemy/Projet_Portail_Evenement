@@ -2,6 +2,7 @@
 using portal_project.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,54 +11,71 @@ namespace portal_project.Dao
 {
     class EventImpl : IEvent
     {
+        MyContext context = new MyContext();
         public void createEvent(Event ev)
         {
-            throw new NotImplementedException();
+            Event dbEvent = context.Events.SingleOrDefault(e => e.Id == ev.Id);
+            if(dbEvent == null)
+            {
+                context.Events.Add(ev);
+                context.SaveChanges();
+            }
         }
 
         public void deleteEvent(int id_event)
         {
-            throw new NotImplementedException();
+            Event dbEvent = context.Events.SingleOrDefault(e => e.Id == id_event);
+            if(dbEvent != null)
+            {
+                context.Events.Remove(dbEvent);
+                context.SaveChanges();
+            }
         }
 
         public void editEvent(Event ev)
         {
-            throw new NotImplementedException();
+            Event dbEvent = context.Events.SingleOrDefault(e => e.Id == ev.Id);
+            if (dbEvent != null)
+            {
+                context.Events.Attach(ev);
+                context.Entry(ev).State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         public List<Event> findAllEventsByDateDebut(DateTime date_debut)
         {
-            throw new NotImplementedException();
+            return context.Events.AsNoTracking().Where(e => e.DateDebut == date_debut).ToList();
         }
 
         public List<Event> findAllEventsByDateFin(DateTime date_fin)
         {
-            throw new NotImplementedException();
+            return context.Events.AsNoTracking().Where(e => e.DateFin == date_fin).ToList();
         }
 
         public List<Event> findAllEventsByDateInterval(DateTime date_debut, DateTime date_fin)
         {
-            throw new NotImplementedException();
+            return context.Events.AsNoTracking().Where(e => e.DateDebut >= date_debut && e.DateFin <= date_fin).ToList();
         }
 
         public List<Event> findAllEventsByTitre(string titre)
         {
-            throw new NotImplementedException();
+            return context.Events.AsNoTracking().Where(e => e.Titre.Contains(titre)).ToList();
         }
 
         public List<Event> findAllEventsByVille(string ville)
         {
-            throw new NotImplementedException();
+            return context.Events.AsNoTracking().Where(e => e.EventAdresse.Ville.Equals(ville)).ToList();
         }
 
-        public Adresse findOneById(int id)
+        public Event findOneById(int id)
         {
-            throw new NotImplementedException();
+            return context.Events.SingleOrDefault(e => e.Id == id);
         }
 
         public List<Event> getAllEvents()
         {
-            throw new NotImplementedException();
+            return context.Events.ToList();
         }
     }
 }

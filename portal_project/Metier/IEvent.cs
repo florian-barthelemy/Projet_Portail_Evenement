@@ -13,7 +13,7 @@ namespace portal_project.Metier
         void editEvent(Event ev);
         void deleteEvent(int id_event);
         List<Event> getAllEvents();
-        Adresse findOneById(int id);
+        Event findOneById(int id);
         List<Event> findAllEventsByVille(string ville);
         List<Event> findAllEventsByDateDebut(DateTime date_debut);
         List<Event> findAllEventsByDateFin(DateTime date_fin);

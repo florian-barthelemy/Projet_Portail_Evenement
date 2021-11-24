@@ -14,10 +14,14 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Titre { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public virtual Adresse EventAdresse { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateDebut { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateFin { get; set; }
         public List<User> Participants { get; set; }
         public List<User> Intervenants { get; set; }
@@ -26,6 +30,7 @@ namespace portal_project.Models
         [Required]
         public double Tarif { get; set; }
         [Required]
+        [Range(0,18)]
         public int MinAge { get; set; }
         public Event()
         {

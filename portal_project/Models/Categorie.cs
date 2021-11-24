@@ -14,6 +14,7 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Libelle { get; set; }
         public Categorie()
         {

@@ -14,16 +14,21 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Nom { get; set; }
         [Required]
+        [DataType(DataType.Text)]
         public string Prenom { get; set; }
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime DateNais { get; set; }
         public virtual List<Adresse> Adresses { get; set; }
         public virtual Adresse MainAdresse { get; set; }

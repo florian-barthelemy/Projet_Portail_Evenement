@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202111240922303_AdresseRequiredTypes.designer.cs">
       <DependentUpon>202111240922303_AdresseRequiredTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111241319569_DatatypesForAll.cs" />
+    <Compile Include="Migrations\202111241319569_DatatypesForAll.designer.cs">
+      <DependentUpon>202111241319569_DatatypesForAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111240922303_AdresseRequiredTypes.resx">
       <DependentUpon>202111240922303_AdresseRequiredTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111241319569_DatatypesForAll.resx">
+      <DependentUpon>202111241319569_DatatypesForAll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
