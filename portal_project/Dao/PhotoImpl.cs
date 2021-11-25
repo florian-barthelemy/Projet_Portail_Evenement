@@ -43,19 +43,15 @@ namespace portal_project.Dao
             }
         }
 
-        public List<Photo> findByDateInterval(DateTime date_debut, DateTime date_fin)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Photo> findByDateUpload(DateTime dt)
         {
-            throw new NotImplementedException();
+            return context.Photos.AsNoTracking().Where(p => p.DateUpload == dt).ToList();
         }
 
         public List<Photo> findByTitle(string title)
         {
-            throw new NotImplementedException();
+            return context.Photos.AsNoTracking().Where(p => p.PhotoTitle == title).ToList();
         }
 
         public Photo findOneById(int id)
@@ -70,7 +66,7 @@ namespace portal_project.Dao
 
         public List<Photo> getAllUserPhoto(User u)
         {
-            throw new NotImplementedException();
+            return context.Photos.AsNoTracking().Where(p => p.UserUploader.Id == u.Id).ToList();
         }
     }
 }

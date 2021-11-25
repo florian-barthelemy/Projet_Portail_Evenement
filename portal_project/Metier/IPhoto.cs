@@ -16,7 +16,5 @@ namespace portal_project.Metier
         List<Photo> getAllUserPhoto(User u);
         List<Photo> findByTitle(string title);
         List<Photo> findByDateUpload(DateTime dt);
-        List<Photo> findByDateInterval(DateTime date_debut, DateTime date_fin);
-
     }
 }

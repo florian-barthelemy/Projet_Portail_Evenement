@@ -82,7 +82,7 @@ namespace portal_project.Dao
 
         public List<User> findByFullName(string nom, string prenom)
         {
-            return context.Users.AsNoTracking().Where(u => u.Prenom.Contains(prenom) || u.Nom.Contains(nom)).ToList();
+            return context.Users.AsNoTracking().Where(u => u.Prenom.Contains(prenom) && u.Nom.Contains(nom)).ToList();
         }
 
         public List<User> findByLastName(string nom)
