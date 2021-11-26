@@ -19,5 +19,9 @@ namespace portal_project.Metier
         List<Event> findAllEventsByDateFin(DateTime date_fin);
         List<Event> findAllEventsByDateInterval(DateTime date_debut, DateTime date_fin);
         List<Event> findAllEventsByTitre(string titre);
+        List<Event> findAllEventsByCategorie(string titre);
+        List<Event> findAllEventsBySousCategorie(string titre);
+
+
     }
 }

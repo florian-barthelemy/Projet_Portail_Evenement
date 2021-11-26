@@ -16,7 +16,7 @@ namespace portal_project.Models
         [Required]
         [DataType(DataType.Text)]
         public string Libelle { get; set; }
-        public List<SousCategorie> CategorieFilles { get; set; }
+        public virtual List<SousCategorie> CategorieFilles { get; set; }
         public Categorie()
         {
         }

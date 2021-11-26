@@ -14,6 +14,5 @@ namespace portal_project.Metier
         void deleteCategorie(int id_categorie);
         List<Categorie> getAllCategories();
         Categorie findOneById(int id);
-        List<Categorie> getAllSubType(Categorie categorie);
     }
 }

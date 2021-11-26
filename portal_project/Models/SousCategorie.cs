@@ -15,7 +15,8 @@ namespace portal_project.Models
         public int Id { get; set; }
         public string Libelle { get; set; }
         public virtual Categorie Categorie { get; set; }
-        public List<Event> EventList { get; set; }
+        public virtual List<Event> EventList { get; set; }
+        public object EventSousCat { get; internal set; }
 
         public SousCategorie()
         {

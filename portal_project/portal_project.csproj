@@ -75,6 +75,10 @@
     <Compile Include="Migrations\202111251037156_ClassEventCatSousCat.designer.cs">
       <DependentUpon>202111251037156_ClassEventCatSousCat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111251327040_VirtualStateOnProp.cs" />
+    <Compile Include="Migrations\202111251327040_VirtualStateOnProp.designer.cs">
+      <DependentUpon>202111251327040_VirtualStateOnProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111251037156_ClassEventCatSousCat.resx">
       <DependentUpon>202111251037156_ClassEventCatSousCat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111251327040_VirtualStateOnProp.resx">
+      <DependentUpon>202111251327040_VirtualStateOnProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

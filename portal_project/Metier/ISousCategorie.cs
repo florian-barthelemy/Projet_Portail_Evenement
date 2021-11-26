@@ -9,10 +9,12 @@ namespace portal_project.Metier
 {
     public interface ISousCategorie
     {
-        void createSousCategorie(Categorie categorie);
-        void editSousCategorie(Categorie categorie);
+        void createSousCategorie(SousCategorie categorie);
+        void editSousCategorie(SousCategorie categorie);
         void deleteSousCategorie(int id_categorie);
-        List<Categorie> getAllCategories();
-        Categorie findOneById(int id);
+        List<SousCategorie> getAllSousCategories();
+        List<SousCategorie> getAllSousCategoriesbyCategorie(string titre);
+
+        SousCategorie findOneById(int id);
     }
 }

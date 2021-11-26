@@ -42,6 +42,11 @@ namespace portal_project.Dao
                 context.SaveChanges();
             }
         }
+         
+        public List<Event> findAllEventsByCategorie(string titre)
+        {
+            return context.Events.AsNoTracking().Where(evnt => evnt.EventCat.Equals(titre)).ToList();
+        }
 
         public List<Event> findAllEventsByDateDebut(DateTime date_debut)
         {
@@ -50,12 +55,20 @@ namespace portal_project.Dao
 
         public List<Event> findAllEventsByDateFin(DateTime date_fin)
         {
-            return context.Events.AsNoTracking().Where(e => e.DateFin == date_fin).ToList();
+            List<Event> dbEvent = context.Events.AsNoTracking().Where(e => e.DateFin == date_fin).ToList();
+            return dbEvent;
         }
 
         public List<Event> findAllEventsByDateInterval(DateTime date_debut, DateTime date_fin)
         {
-            return context.Events.AsNoTracking().Where(e => e.DateDebut >= date_debut && e.DateFin <= date_fin).ToList();
+            List<Event> dbEvent = context.Events.AsNoTracking().Where(e => e.DateDebut >= date_debut && e.DateFin <= date_fin).ToList();
+            return dbEvent;
+        }
+
+        public List<Event> findAllEventsBySousCategorie(string titre)
+        {
+            List<Event> dbEvent = context.Events.AsNoTracking().Where(evnt => evnt.EventSousCat.Equals(titre)).ToList();
+            return dbEvent;
         }
 
         public List<Event> findAllEventsByTitre(string titre)
