@@ -10,53 +10,10 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand p-0 mr-10" href="#">
-                <img src="~/Content/images/logo.png" alt="" srcset="" height="70" class="d-inline-block">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between col-8" id="navbarSupportedContent">
-                <ul class="navbar-nav  mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Qui-sommes nous ?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Evenements</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-
-                </ul>
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light" placeholder="Rechercher" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary bg-light border-0" type="submit" id="button-addon2">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav  mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Inscription</a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-    @RenderBody();
+    @{ 
+        Html.RenderPartial("_Navbar");
+    }
+    @RenderBody()
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
