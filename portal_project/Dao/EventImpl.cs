@@ -45,7 +45,7 @@ namespace portal_project.Dao
          
         public List<Event> findAllEventsByCategorie(string titre)
         {
-            return context.Events.AsNoTracking().Where(evnt => evnt.EventCat.Equals(titre)).ToList();
+            return context.Events.AsNoTracking().Where(evnt => evnt.EventSousCat.EventCategorie.Equals(titre)).ToList();
         }
 
         public List<Event> findAllEventsByDateDebut(DateTime date_debut)

@@ -7,13 +7,13 @@ namespace portal_project.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ClassEventCatSousCat : IMigrationMetadata
+    public sealed partial class CorrectModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ClassEventCatSousCat));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CorrectModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111251037156_ClassEventCatSousCat"; }
+            get { return "202111261330506_CorrectModel"; }
         }
         
         string IMigrationMetadata.Source
