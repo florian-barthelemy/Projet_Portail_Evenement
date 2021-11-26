@@ -57,19 +57,19 @@ namespace portal_project.Dao
         // filter ">=,<=,="
         public List<User> findByAge(int age, string filter)
         {
-            DateTime filterDate = new DateTime();
+            DateTime filterDate = DateTime.Now;
             filterDate.AddYears(-age);
             List<User> dbUser = null;
             switch (filter)
             {
                 case ">=": // plus vieux que
-                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais <= filterDate).ToList();
+                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year <= filterDate.Year).ToList();
                     break;
                 case "<=": // plus jeune que
-                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais >= filterDate).ToList();
+                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year >= filterDate.Year).ToList();
                     break;
                 case "=": // age exact
-                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais == filterDate).ToList();
+                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year == filterDate.Year).ToList();
                     break;
             }
             return dbUser;

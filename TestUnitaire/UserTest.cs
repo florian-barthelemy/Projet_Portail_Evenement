@@ -211,5 +211,104 @@ namespace TestUnitaire
             Assert.AreEqual(1, users.Count);
         }
 
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByCp")]
+        public void FindByCp_59800_Return_Count_Equals1()
+        {
+            List<User> users = dao.findAllUsersByCP("59800");
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByCp")]
+        public void FindByCp_75015_Return_Count_Equals0()
+        {
+            List<User> users = dao.findAllUsersByCP("75015");
+            Assert.AreEqual(0, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByVille")]
+        public void FindByVille_Lille_Return_Count_Equals1()
+        {
+            List<User> users = dao.findAllUsersByVille("Lille");
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByVille")]
+        public void FindByVille_Paris_Return_Count_Equals0()
+        {
+            List<User> users = dao.findAllUsersByVille("Paris");
+            Assert.AreEqual(0, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_1_Comparatif_PlusVieux_Return_Count_Equals1()
+        {
+            List<User> users = dao.findByAge(1,">=");
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_10_Comparatif_PlusVieux_Return_Count_Equals0()
+        {
+            List<User> users = dao.findByAge(10, ">=");
+            Assert.AreEqual(0, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_10_Comparatif_PlusJeune_Return_Count_Equals1()
+        {
+            List<User> users = dao.findByAge(10, "<=");
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_1_Comparatif_PlusJeune_Return_Count_Equals0()
+        {
+            List<User> users = dao.findByAge(1, "<=");
+            Assert.AreEqual(0, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_3_Comparatif_Exact_Return_Count_Equals1()
+        {
+            List<User> users = dao.findByAge(3, "=");
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_4_Comparatif_Exact_Return_Count_Equals0()
+        {
+            List<User> users = dao.findByAge(4, "=");
+            Assert.AreEqual(0, users.Count);
+        }
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByAge")]
+        public void FindByAge_2_Comparatif_Exact_Return_Count_Equals0()
+        {
+            List<User> users = dao.findByAge(2, "=");
+            Assert.AreEqual(0, users.Count);
+        }
+
     }
 }

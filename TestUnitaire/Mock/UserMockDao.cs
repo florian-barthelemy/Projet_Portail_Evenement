@@ -45,24 +45,34 @@ namespace TestUnitaire.Mock
             }
         }
 
-        public List<Adresse> findAllUsersByCP(string code_postal)
+        public List<User> findAllUsersByCP(string code_postal)
         {
-            throw new NotImplementedException();
+            return Users.FindAll(u => u.MainAdresse.CodePostal.Equals(code_postal));
         }
 
-        public List<Adresse> findAllUsersByVille(string ville)
+        public List<User> findAllUsersByVille(string ville)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<User> findByAge(int age)
-        {
-            throw new NotImplementedException();
+            return Users.FindAll(u => u.MainAdresse.Ville.Equals(ville));
         }
 
         public List<User> findByAge(int age, string filter)
         {
-            throw new NotImplementedException();
+            DateTime filterDate = DateTime.Now;
+            filterDate=filterDate.AddYears(-age);
+            List<User> dbUser = null;
+            switch (filter)
+            {
+                case ">=": // plus vieux que
+                    dbUser = Users.FindAll(u => u.DateNais.Year <= filterDate.Year);
+                    break;
+                case "<=": // plus jeune que
+                    dbUser = Users.FindAll(u => u.DateNais.Year >= filterDate.Year);
+                    break;
+                case "=": // age exact
+                    dbUser = Users.FindAll(u => u.DateNais.Year == filterDate.Year);
+                    break;
+            }
+            return dbUser;
         }
 
         public List<User> findByFirstName(string prenom)
@@ -93,16 +103,6 @@ namespace TestUnitaire.Mock
         public List<User> getAllUsers()
         {
             return Users;
-        }
-
-        List<User> IUser.findAllUsersByCP(string code_postal)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<User> IUser.findAllUsersByVille(string ville)
-        {
-            throw new NotImplementedException();
         }
     }
 }
