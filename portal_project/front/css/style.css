@@ -1,0 +1,11 @@
+body{
+    background: url('../images/bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bg-navbar{
+    background-color: rgba(145, 152, 157, 0.66)!important;
+    
+}
+
