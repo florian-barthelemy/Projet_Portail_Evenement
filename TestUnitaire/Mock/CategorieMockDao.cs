@@ -55,9 +55,5 @@ namespace TestUnitaire.Mock
             return Categories;
         }
 
-        public List<Categorie> getAllSubType(Categorie categorie)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

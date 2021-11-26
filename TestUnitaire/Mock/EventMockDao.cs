@@ -47,7 +47,7 @@ namespace TestUnitaire.Mock
 
         public List<Event> findAllEventsByCategorie(string titre)
         {
-            throw new NotImplementedException();
+            return Events.FindAll(e => e.EventSousCat.EventCategorie.Libelle.Equals(titre));
         }
 
         public List<Event> findAllEventsByDateDebut(DateTime date_debut)

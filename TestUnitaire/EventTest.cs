@@ -21,6 +21,10 @@ namespace TestUnitaire
             DateTime dateFin = new DateTime(2018, 12, 12);
             dao.Events[0].DateDebut = dateDebut;
             dao.Events[0].DateFin = dateFin;
+            SousCategorie sousCategorie = new SousCategorie() { Libelle = "Foot"};
+            dao.Events[0].EventSousCat = sousCategorie;
+            Categorie categorie = new Categorie() { Libelle = "Sportif" };
+            dao.Events[0].EventSousCat.EventCategorie = categorie;
         }
 
         [TestCleanup] //Clean: s'execute après chaque méthode de test
@@ -218,6 +222,15 @@ namespace TestUnitaire
         {
             List<Event> events = dao.findAllEventsByVille("Paris");
             Assert.AreEqual(0, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "FindByCategorie")]
+        public void FindByCategorie_Sportif_Return_Count_Equals1()
+        {
+            List<Event> events = dao.findAllEventsByCategorie("Sportif");
+            Assert.AreEqual(1, events.Count);
         }
     }
 }
