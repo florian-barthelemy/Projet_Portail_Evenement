@@ -33,7 +33,6 @@ namespace portal_project.Models
         [Range(0,18)]
         public int MinAge { get; set; }
         public virtual List<Photo> PhotosEvent { get; set; }
-        public virtual Categorie EventCat { get; set; }
         public virtual SousCategorie EventSousCat { get; set; }
         public Event()
         {

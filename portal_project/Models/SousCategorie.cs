@@ -14,9 +14,8 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         public string Libelle { get; set; }
-        public virtual Categorie Categorie { get; set; }
+        public virtual Categorie EventCategorie { get; set; }
         public virtual List<Event> EventList { get; set; }
-        public object EventSousCat { get; internal set; }
 
         public SousCategorie()
         {
@@ -26,13 +25,13 @@ namespace portal_project.Models
         {
             Id = id;
             Libelle = libelle;
-            Categorie = categorie;
+            EventCategorie = categorie;
         }
 
         public SousCategorie(string libelle, Categorie categorie)
         {
             Libelle = libelle;
-            Categorie = categorie;
+            EventCategorie = categorie;
         }
     }
 }

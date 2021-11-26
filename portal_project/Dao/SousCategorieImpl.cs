@@ -57,7 +57,7 @@ namespace portal_project.Dao
 
         public List<SousCategorie> getAllSousCategoriesbyCategorie(string titre)
         {
-            return context.SousCategories.AsNoTracking().Where(evnt => evnt.EventSousCat.Equals(titre)).ToList();
+            return context.SousCategories.AsNoTracking().Where(evnt => evnt.EventCategorie.Equals(titre)).ToList();
         }
     }
 }
