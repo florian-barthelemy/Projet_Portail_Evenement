@@ -232,5 +232,32 @@ namespace TestUnitaire
             List<Event> events = dao.findAllEventsByCategorie("Sportif");
             Assert.AreEqual(1, events.Count);
         }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "FindByCategorie")]
+        public void FindByCategorie_Culturel_Return_Count_Equals0()
+        {
+            List<Event> events = dao.findAllEventsByCategorie("Culturel");
+            Assert.AreEqual(0, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "FindBySousCategorie")]
+        public void FindBySousCategorie_Foot_Return_Count_Equals1()
+        {
+            List<Event> events = dao.findAllEventsBySousCategorie("Foot");
+            Assert.AreEqual(1, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "FindBySousCategorie")]
+        public void FindBySousCategorie_Hand_Return_Count_Equals0()
+        {
+            List<Event> events = dao.findAllEventsBySousCategorie("Hand");
+            Assert.AreEqual(0, events.Count);
+        }
     }
 }

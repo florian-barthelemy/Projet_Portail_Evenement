@@ -67,7 +67,7 @@ namespace portal_project.Dao
 
         public List<Event> findAllEventsBySousCategorie(string titre)
         {
-            List<Event> dbEvent = context.Events.AsNoTracking().Where(evnt => evnt.EventSousCat.Equals(titre)).ToList();
+            List<Event> dbEvent = context.Events.AsNoTracking().Where(evnt => evnt.EventSousCat.Libelle.Equals(titre)).ToList();
             return dbEvent;
         }
 
