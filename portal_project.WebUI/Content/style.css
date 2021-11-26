@@ -8,4 +8,6 @@ body{
     background-color: rgba(145, 152, 157, 0.66)!important;
     
 }
-
+.stroke {
+    -webkit-text-stroke: 0.5px #000000;
+}

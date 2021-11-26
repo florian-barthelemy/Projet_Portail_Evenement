@@ -9,10 +9,10 @@ namespace portal_project.WebUI
         public static void RegisterBundles(BundleCollection bundles)
         {
             
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootstrap.bundle.js",
-                      "~/Scripts/sidebars.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/js/").Include(
+                      "~/Scripts/js/bootstrap.js",
+                      "~/Scripts/js/bootstrap.bundle.js",
+                      "~/Scripts/js/sidebars.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
