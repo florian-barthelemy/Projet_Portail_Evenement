@@ -14,7 +14,7 @@ namespace TestUnitaire
         public void Setup()
         {
             dao = new UserMockDao();
-            dao.Users.Add(new User() { Id = 1, Nom = "Jehann", Prenom = "Lille", Email = "jehan@lille.com" });
+            dao.Users.Add(new User() { Id = 1, Nom = "Jehann", Prenom = "Lille", Email = "jehan@lille.com", IsAdmin =true });
             DateTime dateNaissance = new DateTime(2018, 10, 1);
             Adresse adresse = new Adresse(1, 3.062618, 50.637243, "1 rue esquermoise", "59800", "Lille");
             dao.Users[0].DateNais = dateNaissance;
@@ -310,5 +310,24 @@ namespace TestUnitaire
             Assert.AreEqual(0, users.Count);
         }
 
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindAllAdmins")]
+        public void FindAdmins_Return_Count_Equals1()
+        {
+            List<User> users = dao.getAllAdmins();
+            Assert.AreEqual(1, users.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindAllAdmins")]
+        public void FindAdmins_AjoutUtilisateurNonAdmin_Return_Count_Equals1()
+        {
+            User u2 = new User() { Id = 2, Email = "Dawan@paris.com", IsAdmin = false };
+            dao.createUser(u2);
+            List<User> users = dao.getAllAdmins();
+            Assert.AreEqual(1, users.Count);
+        }
     }
 }

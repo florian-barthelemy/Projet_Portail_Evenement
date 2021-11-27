@@ -97,7 +97,7 @@ namespace TestUnitaire.Mock
 
         public List<User> getAllAdmins()
         {
-            throw new NotImplementedException();
+            return Users.FindAll(u => u.IsAdmin == true);
         }
 
         public List<User> getAllUsers()
