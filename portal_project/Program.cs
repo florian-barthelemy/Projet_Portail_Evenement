@@ -17,8 +17,9 @@ namespace portal_project
             IAdresse interAdr = new AdresseImpl();
             IEvent interEvent = new EventImpl();
             IUser interUser = new UserImpl();
-
-            //ADD
+            IPhoto interPhoto = new PhotoImpl();
+            ICategorie interCategorie = new CategorieImpl();
+            ISousCategorie interSousCategorie = new SousCategorieImpl();
 
             //ADRESSE
             Adresse adr1 = new Adresse(2.598,6.3655,"9 rue Hector","80000","Amiens");
@@ -30,14 +31,97 @@ namespace portal_project
             interAdr.createAdress(adr3);
 
             List<Adresse> u1_adr = interAdr.getAllAdresses();
+            u1_adr.First().CodePostal = "00000";
+            interAdr.editAdress(u1_adr.First());
+            interAdr.deleteAdresse(u1_adr.Last().Id);
+
+
             //User
-            User u1 = new User("Thomas", "Shelby", "PeakyPeaky@World.com", "redrighthand", true, u1_adr, new DateTime(), u1_adr.First());
-            User u2 = new User("Arthur", "Shelby", "ByOrder@garisson.com", "thisplaceisundernewmanagment", true, null, new DateTime(), null);
-            User u3 = new User("Tyrion", "Lannister", "drink@knowthings.com", "rainsofcastamere", true, null, new DateTime(), null);
+            DateTime dt = new DateTime();
+            dt.AddYears(40);
+
+            /* 
+             * public User(
+             * string nom, string prenom,
+             * string email, string password, bool isAdmin,
+             * List<Adresse> adresses, DateTime dateNais,
+             * Adresse mainAdresse, Genre userGenre
+             * )
+             */
+
+            User u1 = new User("Shelby", "Thomas", "PeakyPeaky@World.com", "redrighthand", true, null, dt, null, User.Genre.Homme);
+            User u2 = new User("Shelby", "Arthur", "ByOrder@garisson.com", "thisplaceisundernewmanagment", true, null, dt, null, User.Genre.Homme);
+            User u3 = new User("Lannister", "Cercei", "drink@knowthings.com", "rainsofcastamere", true, null, dt, null, User.Genre.Femme);
 
             interUser.createUser(u1);
             interUser.createUser(u2);
             interUser.createUser(u3);
+
+            List < User > usersList = interUser.getAllUsers();
+            usersList.First().Email = "blabla@toto.net";
+            interUser.editUser(usersList.First());
+            interUser.deleteUser(usersList.Last().Id);
+
+
+            //EVENT
+            /*
+             public Event(
+            string titre, string description,
+            Adresse eventAdresse, DateTime dateDebut,
+            DateTime dateFin, List<User> participants,
+            List<User> intervenants, User creator, double tarif,
+            int minAge, List<Photo> photosEvent
+            )
+             */
+            DateTime deb = new DateTime();
+            DateTime fin = new DateTime();
+            fin.AddMonths(2);
+            Event ev1 = new Event("Concert ACDC", "En maison de retraite", null, deb, fin, null, null, null, 12.2,18, null);
+            Event ev2 = new Event("Exposition d'art moderne", "Dans le musée Grevin", null, deb, fin, null, null, null, 12.2,0, null);
+            Event ev3 = new Event("Concert ACDC", "En maison de retraite", null, deb, fin, null, null, null, 12.2,12, null);
+            interEvent.createEvent(ev1);
+            interEvent.createEvent(ev2);
+            interEvent.createEvent(ev3);
+
+            List<Event> evList = interEvent.getAllEvents();
+            evList.First().Description = "aaaaaaaaaaaa";
+            interEvent.editEvent(evList.First());
+            interEvent.deleteEvent(evList.Last().Id);
+
+
+            // PHOTO
+
+            Photo p1 = new Photo("c:\\myPhoto\\img.png", null, "Belle photo", "Elle brille meme", null, deb);
+            Photo p2 = new Photo("c:\\myPhoto\\img1.png", null, "Picture random", "Toujours plus", null, deb);
+            Photo p3 = new Photo("c:\\myPhoto\\img2.png", null, "Peaky Blinders", "Au beau milieu du morne hiver", null, deb);
+
+            interPhoto.createPhoto(p1);
+            interPhoto.createPhoto(p2);
+            interPhoto.createPhoto(p3);
+
+
+            List<Photo> pList = interPhoto.getAllPhotos();
+            pList.First().PhotoDescription = "aazazazaza";
+            interPhoto.editPhoto(pList.First());
+            interPhoto.deletePhoto(pList.Last().Id);
+
+            /*
+            =============== A TESTER APRES IMPLEMENTATION DE CATEGORIE ET SOUS CATEGORIE =================
+
+            //Categorie && SousCategorie
+            Categorie cat1 = new Categorie("Culture");
+            Categorie cat2 = new Categorie("Sport");
+
+            interCategorie.createCategorie(cat1);
+            interCategorie.createCategorie(cat2);
+
+            Categorie dbCat = interCategorie.findOneById(0);
+            SousCategorie subCat1 = new SousCategorie("Musique",dbCat);
+            SousCategorie subCat2 = new SousCategorie("Theatre", dbCat);
+
+            interSousCategorie.createSousCategorie(subCat1);
+            interSousCategorie.createSousCategorie(subCat2);
+
 
             //Event
             Adresse adrEvent = new Adresse(2.598, 6.3655, "12 rue Lamartine", "75000", "Paris");
@@ -54,7 +138,7 @@ namespace portal_project
 
 
 
-
+            */
         }
     }
 }

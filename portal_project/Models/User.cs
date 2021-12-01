@@ -27,9 +27,19 @@ namespace portal_project.Models
         public string Password { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
+        public enum Genre //Enumeration Genre utilisateur
+        {
+            Homme, 
+            Femme
+        };
+       [Required]
+        
+       public Genre UserGenre { get; set; }
+
         [Required]
         [DataType(DataType.DateTime)]
-        public DateTime DateNais { get; set; }
+        [Column(TypeName = "datetime2")]
+        public virtual DateTime DateNais { get; set; }
         public virtual List<Adresse> Adresses { get; set; }
         public virtual Adresse MainAdresse { get; set; }
 
@@ -38,7 +48,7 @@ namespace portal_project.Models
         {
         }
 
-        public User(int id, string nom, string prenom, string email, string password, bool isAdmin, List<Adresse> adresses, DateTime dateNais, Adresse mainAdresse)
+        public User(int id, string nom, string prenom, string email, string password, bool isAdmin, List<Adresse> adresses, DateTime dateNais, Adresse mainAdresse, Genre userGenre)
         {
             Id = id;
             Nom = nom;
@@ -49,9 +59,10 @@ namespace portal_project.Models
             Adresses = adresses;
             DateNais = dateNais;
             MainAdresse = mainAdresse;
+            UserGenre = userGenre;
         }
 
-        public User(string nom, string prenom, string email, string password, bool isAdmin, List<Adresse> adresses, DateTime dateNais, Adresse mainAdresse)
+        public User(string nom, string prenom, string email, string password, bool isAdmin, List<Adresse> adresses, DateTime dateNais, Adresse mainAdresse, Genre userGenre)
         {
             Nom = nom;
             Prenom = prenom;
@@ -61,7 +72,8 @@ namespace portal_project.Models
             Adresses = adresses;
             DateNais = dateNais;
             MainAdresse = mainAdresse;
+            UserGenre = userGenre;
         }
-        
+
     }
 }

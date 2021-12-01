@@ -75,6 +75,22 @@
     <Compile Include="Migrations\202111261330506_CorrectModel.designer.cs">
       <DependentUpon>202111261330506_CorrectModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112011736259_UserFixDateNaisAndAddGenre.cs" />
+    <Compile Include="Migrations\202112011736259_UserFixDateNaisAndAddGenre.designer.cs">
+      <DependentUpon>202112011736259_UserFixDateNaisAndAddGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112011825462_AddDatetime2AnnotationEvent.cs" />
+    <Compile Include="Migrations\202112011825462_AddDatetime2AnnotationEvent.designer.cs">
+      <DependentUpon>202112011825462_AddDatetime2AnnotationEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112011832439_RmRequiredEvent.cs" />
+    <Compile Include="Migrations\202112011832439_RmRequiredEvent.designer.cs">
+      <DependentUpon>202112011832439_RmRequiredEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112011844186_FixDateAndCreatePhotoEvent.cs" />
+    <Compile Include="Migrations\202112011844186_FixDateAndCreatePhotoEvent.designer.cs">
+      <DependentUpon>202112011844186_FixDateAndCreatePhotoEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -166,6 +182,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111261330506_CorrectModel.resx">
       <DependentUpon>202111261330506_CorrectModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112011736259_UserFixDateNaisAndAddGenre.resx">
+      <DependentUpon>202112011736259_UserFixDateNaisAndAddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112011825462_AddDatetime2AnnotationEvent.resx">
+      <DependentUpon>202112011825462_AddDatetime2AnnotationEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112011832439_RmRequiredEvent.resx">
+      <DependentUpon>202112011832439_RmRequiredEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112011844186_FixDateAndCreatePhotoEvent.resx">
+      <DependentUpon>202112011844186_FixDateAndCreatePhotoEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

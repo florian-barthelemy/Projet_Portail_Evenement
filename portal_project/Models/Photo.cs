@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace portal_project.Models
         [FileExtensions(Extensions = "png,jpg,jpeg,gif")]
         [Required]
         public string PhotoLocation { get; set; }
-        [Required]
+        
         public virtual User UserUploader { get; set; }
         [Required]
         [DataType(DataType.Text)]
@@ -25,6 +26,8 @@ namespace portal_project.Models
         [Required]
         [DataType(DataType.MultilineText)]
         public string PhotoDescription { get; set; }
+        [DataType(DataType.DateTime)]
+        [Column(TypeName = "datetime2")]
         public DateTime DateUpload { get; set; }
         public virtual Event PhotoEvent { get; set; }
 

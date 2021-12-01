@@ -14,7 +14,7 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createEvent(Event ev)
         {
-            Event dbEvent = context.Events.SingleOrDefault(e => e.Id == ev.Id);
+            Event dbEvent = context.Events.FirstOrDefault(e => e.Id == ev.Id);
             if(dbEvent == null)
             {
                 context.Events.Add(ev);

@@ -20,23 +20,21 @@ namespace portal_project.Models
         public string Description { get; set; }
         public virtual Adresse EventAdresse { get; set; }
         [DataType(DataType.DateTime)]
-        public DateTime DateDebut { get; set; }
+        [Column(TypeName = "datetime2")]
+        public virtual DateTime DateDebut { get; set; }
         [DataType(DataType.DateTime)]
-        public DateTime DateFin { get; set; }
+        [Column(TypeName = "datetime2")]
+        public virtual DateTime DateFin { get; set; }
         public List<User> Participants { get; set; }
         public List<User> Intervenants { get; set; }
-        [Required]
+        
         public virtual User Creator{ get; set; }
-        [Required]
+        
         public double Tarif { get; set; }
-        [Required]
         [Range(0,18)]
         public int MinAge { get; set; }
         public virtual List<Photo> PhotosEvent { get; set; }
         public virtual SousCategorie EventSousCat { get; set; }
-        public Event()
-        {
-        }
         public Event(int id, string titre, string description,
                     Adresse eventAdresse, DateTime dateDebut, DateTime dateFin,
                     List<User> participants, List<User> intervenants, User creator, double tarif, int minAge, List<Photo> photosEvent)
@@ -68,6 +66,11 @@ namespace portal_project.Models
             Tarif = tarif;
             MinAge = minAge;
             PhotosEvent = photosEvent;
+        }
+
+        public Event()
+        {
+
         }
     }
 }
