@@ -46,7 +46,7 @@ namespace portal_project.Dao
 
         public List<Photo> findByDateUpload(DateTime dt)
         {
-            return context.Photos.AsNoTracking().Where(p => p.DateUpload == dt).ToList();
+            return context.Photos.AsNoTracking().Where(p => p.DateUpload.Date == dt.Date).ToList();
         }
 
         public List<Photo> findByTitle(string title)
