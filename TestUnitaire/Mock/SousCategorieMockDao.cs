@@ -17,54 +17,49 @@ namespace TestUnitaire.Mock
             SousCategories = new List<SousCategorie>();
         }
 
-        public void createSousCategorie(Categorie categorie)
+
+        public void createSousCategorie(SousCategorie souscategorie)
         {
-            throw new NotImplementedException();
+            SousCategorie newCat = SousCategories.Find(c => c.Id == souscategorie.Id);
+        if (newCat == null)
+        {
+            SousCategories.Add(newCat);
+        }
+    }
+
+        public void deleteSousCategorie(int id_sousCategorie)
+        {
+            SousCategorie deletedCat = SousCategories.Find(e => e.Id == id_sousCategorie);
+            if (deletedCat != null)
+            {
+                SousCategories.Remove(deletedCat);
+            }
         }
 
-        public void createSousCategorie(SousCategorie categorie)
+        public void editSousCategorie(SousCategorie sousCategorie)
         {
-            throw new NotImplementedException();
+            SousCategorie dbCategorie = SousCategories.Find(u => u.Id == sousCategorie.Id);
+            if (dbCategorie != null)
+            {
+                SousCategories.Remove(dbCategorie);
+                SousCategories.Add(sousCategorie);
+            }
         }
 
-        public void deleteSousCategorie(int id_categorie)
+        public SousCategorie findOneById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void editSousCategorie(Categorie categorie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void editSousCategorie(SousCategorie categorie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Categorie findOneById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Categorie> getAllCategories()
-        {
-            throw new NotImplementedException();
+            return SousCategories.Find(s => s.Id == id);
         }
 
         public List<SousCategorie> getAllSousCategories()
         {
-            throw new NotImplementedException();
+            return SousCategories;
         }
 
         public List<SousCategorie> getAllSousCategoriesbyCategorie(string titre)
         {
-            throw new NotImplementedException();
+            return SousCategories.FindAll(evnt => evnt.EventCategorie.Libelle.Equals(titre));
         }
 
-        SousCategorie ISousCategorie.findOneById(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

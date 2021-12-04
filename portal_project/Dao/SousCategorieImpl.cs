@@ -27,7 +27,7 @@ namespace portal_project.Dao
         public void deleteSousCategorie(int id_sousCategorie)
         {
             SousCategorie deletedCat = context.SousCategories.SingleOrDefault(e => e.Id == id_sousCategorie);
-            if (deletedCat == null)
+            if (deletedCat != null)
             {
                 context.SousCategories.Remove(deletedCat);
                 context.SaveChanges();
@@ -57,7 +57,7 @@ namespace portal_project.Dao
 
         public List<SousCategorie> getAllSousCategoriesbyCategorie(string titre)
         {
-            return context.SousCategories.AsNoTracking().Where(evnt => evnt.EventCategorie.Equals(titre)).ToList();
+            return context.SousCategories.AsNoTracking().Where(evnt => evnt.EventCategorie.Libelle.Equals(titre)).ToList();
         }
     }
 }
