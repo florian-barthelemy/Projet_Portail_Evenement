@@ -91,6 +91,10 @@
     <Compile Include="Migrations\202112011844186_FixDateAndCreatePhotoEvent.designer.cs">
       <DependentUpon>202112011844186_FixDateAndCreatePhotoEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112060929494_Ajout_Type_Evenements.cs" />
+    <Compile Include="Migrations\202112060929494_Ajout_Type_Evenements.designer.cs">
+      <DependentUpon>202112060929494_Ajout_Type_Evenements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -194,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112011844186_FixDateAndCreatePhotoEvent.resx">
       <DependentUpon>202112011844186_FixDateAndCreatePhotoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112060929494_Ajout_Type_Evenements.resx">
+      <DependentUpon>202112060929494_Ajout_Type_Evenements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
