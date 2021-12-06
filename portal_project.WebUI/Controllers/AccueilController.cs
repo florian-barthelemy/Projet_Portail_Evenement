@@ -8,6 +8,7 @@ namespace portal_project.WebUI.Controllers
 {
     public class AccueilController : Controller
     {
+        
         // GET: Accueil
         public ActionResult Index()
         {

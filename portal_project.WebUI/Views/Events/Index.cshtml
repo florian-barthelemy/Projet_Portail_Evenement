@@ -1,0 +1,14 @@
+﻿@model IEnumerable<portal_project.Models.Categorie>
+@{
+    ViewBag.Title = "Evenements";
+}
+@Html.Partial("_Sidebar")
+<h2>Evenements</h2>
+
+
+@foreach (var item in Model)
+{
+    
+     @Html.DisplayFor(modelItem => item.Libelle)
+        
+}

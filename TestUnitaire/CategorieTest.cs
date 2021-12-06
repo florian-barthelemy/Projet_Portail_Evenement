@@ -10,12 +10,12 @@ namespace TestUnitaire
     [TestClass]
     public class CategorieTest
     {
-        CategorieMockDao dao;
+        CategorieDao dao;
         CategorieService service;
         [TestInitialize] //Setup: s'execute avant chaque méthode de test
         public void Setup()
         {
-            dao = new CategorieMockDao();
+            dao = new CategorieDao();
             service = new CategorieService(dao);
             dao.Categories.Add(new Categorie(1, "Sportif"));
         }

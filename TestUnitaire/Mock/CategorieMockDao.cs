@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace TestUnitaire.Mock
 {
-    public class CategorieMockDao : ICategorie
+    public class CategorieDao : ICategorie
     {
         public List<Categorie> Categories;
 
-        public CategorieMockDao()
+        public CategorieDao()
         {
             Categories = new List<Categorie>();
         }
