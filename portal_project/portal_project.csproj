@@ -145,6 +145,7 @@
     <Compile Include="MyContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CategorieService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -203,6 +204,7 @@
       <DependentUpon>202112060929494_Ajout_Type_Evenements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
