@@ -148,8 +148,12 @@
     <Compile Include="MyContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AdresseService.cs" />
     <Compile Include="Service\CategorieService.cs" />
+    <Compile Include="Service\EventService.cs" />
+    <Compile Include="Service\PhotoService.cs" />
     <Compile Include="Service\SousCategorieService.cs" />
+    <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

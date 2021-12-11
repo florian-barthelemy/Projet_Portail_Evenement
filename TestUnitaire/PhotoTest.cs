@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using portal_project.Models;
+using portal_project.Service;
 using System;
 using System.Collections.Generic;
 using TestUnitaire.Mock;
@@ -10,10 +11,12 @@ namespace TestUnitaire
     public class PhotoTest
     {
         PhotoMockDao dao;
+        PhotoService service;
         [TestInitialize]
         public void Setup()
         {
             dao = new PhotoMockDao();
+            service = new PhotoService(dao);
             User user = new User
             {
                 Id = 1
@@ -44,7 +47,7 @@ namespace TestUnitaire
                 Id = 2,
                 PhotoTitle="CDM2022"
             };
-            dao.createPhoto(photo);
+            service.createPhoto(photo);
             Assert.AreEqual(2, dao.Photos.Count);
         }
 
@@ -58,7 +61,7 @@ namespace TestUnitaire
                 Id = 1,
                 PhotoTitle = "CDM2022"
             };
-            dao.createPhoto(photo);
+            service.createPhoto(photo);
             Assert.AreEqual(1, dao.Photos.Count);
         }
 
@@ -67,7 +70,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "Delete")]
         public void DeletePhoto_DifferentId_Return_Count_Equals0()
         {
-            dao.deletePhoto(1);
+            service.deletePhoto(1);
             Assert.AreEqual(0, dao.Photos.Count);
         }
 
@@ -76,7 +79,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "Delete")]
         public void DeletePhoto_DifferentId_Return_Count_Equals1()
         {
-            dao.deletePhoto(2);
+            service.deletePhoto(2);
             Assert.AreEqual(1, dao.Photos.Count);
         }
 
@@ -90,8 +93,8 @@ namespace TestUnitaire
                 Id = 1,
                 PhotoTitle = "CDM2022"
             };
-            dao.editPhoto(photo);
-            Assert.AreEqual(photo.PhotoTitle, dao.findOneById(1).PhotoTitle);
+            service.editPhoto(photo);
+            Assert.AreEqual(photo.PhotoTitle, service.findOneById(1).PhotoTitle);
         }
 
         [TestMethod]
@@ -104,8 +107,8 @@ namespace TestUnitaire
                 Id = 2,
                 PhotoTitle = "CDM2022"
             };
-            dao.editPhoto(photo);
-            Assert.AreEqual("CDM", dao.findOneById(1).PhotoTitle);
+            service.editPhoto(photo);
+            Assert.AreEqual("CDM", service.findOneById(1).PhotoTitle);
         }
 
         [TestMethod]
@@ -114,7 +117,7 @@ namespace TestUnitaire
         public void FindByDateUploadPhoto_KnownDate_Return_Count_Equals1()
         {
             DateTime dateTime = new DateTime(2021,12,4,16,50,15);
-            List<Photo> photos = dao.findByDateUpload(dateTime);
+            List<Photo> photos = service.findByDateUpload(dateTime);
             Assert.AreEqual(1, photos.Count);
         }
 
@@ -124,7 +127,7 @@ namespace TestUnitaire
         public void FindByDateUploadPhoto_UnknownDate_Return_Count_Equals0()
         {
             DateTime dateTime = new DateTime(2021, 12, 5, 16, 50, 15);
-            List<Photo> photos = dao.findByDateUpload(dateTime);
+            List<Photo> photos = service.findByDateUpload(dateTime);
             Assert.AreEqual(0, photos.Count);
         }
 
@@ -133,7 +136,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "FindByTitle")]
         public void FindByTitlePhoto_KnownTitle_Return_Count_Equals1()
         {
-            List<Photo> photos = dao.findByTitle("CDM");
+            List<Photo> photos = service.findByTitle("CDM");
             Assert.AreEqual(1, photos.Count);
         }
 
@@ -142,7 +145,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "FindByTitle")]
         public void FindByTitlePhoto_UnknownTitle_Return_Count_Equals0()
         {
-            List<Photo> photos = dao.findByTitle("CDM2");
+            List<Photo> photos = service.findByTitle("CDM2");
             Assert.AreEqual(0, photos.Count);
         }
 
@@ -151,7 +154,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "FindOneById")]
         public void FindByIdPhoto_KnownId_Return_Count_Equals1()
         {
-            Photo photo = dao.findOneById(1);
+            Photo photo = service.findOneById(1);
             Assert.AreEqual("CDM", photo.PhotoTitle);
         }
 
@@ -160,7 +163,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "FindOneById")]
         public void FindByIdPhoto_UnknownId_Return_Count_Equals0()
         {
-            Photo photo = dao.findOneById(2);
+            Photo photo = service.findOneById(2);
             Assert.AreEqual(null, photo);
         }
 
@@ -169,7 +172,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "GetAllPhoto")]
         public void GetAllPhoto_Return_Count_Equals1()
         {
-            List<Photo> photos = dao.getAllPhotos();
+            List<Photo> photos = service.getAllPhotos();
             Assert.AreEqual(1, photos.Count);
         }
 
@@ -178,7 +181,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "GetAllUserPhoto")]
         public void GetAllUserPhoto_IdUserHavePhoto_Return_Count_Equals1()
         {
-            List<Photo> photos = dao.getAllUserPhoto(new User { Id = 1 });
+            List<Photo> photos = service.getAllUserPhoto(new User { Id = 1 });
             Assert.AreEqual(1, photos.Count);
         }
 
@@ -187,7 +190,7 @@ namespace TestUnitaire
         [TestProperty("Test Photo", "GetAllUserPhoto")]
         public void GetAllUserPhoto_IdUserDontHavePhoto_Return_Count_Equals0()
         {
-            List<Photo> photos = dao.getAllUserPhoto(new User { Id = 2 });
+            List<Photo> photos = service.getAllUserPhoto(new User { Id = 2 });
             Assert.AreEqual(0, photos.Count);
         }
     }
