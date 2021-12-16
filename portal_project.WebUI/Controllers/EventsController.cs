@@ -18,6 +18,8 @@ namespace portal_project.WebUI.Controllers
         private CategorieImpl catDao;
         private EventService evService;
         private EventImpl evDao;
+        private PhotoService photoService;
+        private PhotoImpl photoDao;
 
         public EventsController()
         {
@@ -27,6 +29,8 @@ namespace portal_project.WebUI.Controllers
             souCatService = new SousCategorieService(sousCatDao);
             evDao = new EventImpl();
             evService = new EventService(evDao);
+            photoDao = new PhotoImpl();
+            photoService = new PhotoService(photoDao);
         }
         // GET: Events
         public ActionResult Index()
@@ -34,14 +38,14 @@ namespace portal_project.WebUI.Controllers
 
             List<EventViewModel> vm = new List<EventViewModel>();
             List<Event> events = new List<Event>();
-            foreach (Event evenement in evDao.getAllEvents())
+            foreach (Event evenement in evService.getAllEvents())
             {
                 events.Add(evenement);
             }
-            foreach (Categorie category in catDao.getAllCategories())
+            foreach (Categorie category in catService.getAllCategories())
             {
                 List<SousCategorie> souscats = new List<SousCategorie>();
-                foreach (SousCategorie souscat in sousCatDao.getAllSousCategoriesbyCategorie(category.Libelle))
+                foreach (SousCategorie souscat in souCatService.getAllSousCategoriesbyCategorie(category.Libelle))
                 {
                     souscats.Add(souscat);
                 }
@@ -53,6 +57,23 @@ namespace portal_project.WebUI.Controllers
             //List<SousCategorie> sousCatsLst = souCatService.getAllSousCategories().ToList();
             //List<SelectListItem> sousCats = new List<SelectListItem>() { };
             return View(vm);
+        }
+        public ActionResult Details(int id)
+        {
+            
+            Event evenement = evService.findOneById(id);
+            List<Photo> photo = photoService.getAllEventPhoto(evenement);
+            evenement.PhotosEvent = photo;
+            if (evenement == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(evenement);
+            }
+
+            
         }
     }
 }
