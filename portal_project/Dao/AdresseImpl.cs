@@ -14,51 +14,40 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createAdress(Adresse adresse)
         {
-            Adresse adr = context.Adresses.FirstOrDefault(ad => ad.Axe_X == adresse.Axe_X && ad.Axe_Y == adresse.Axe_Y);
-            if (adr == null)
-            {
-                context.Adresses.Add(adresse);
-                context.SaveChanges();
-            }
-            
-            
+
+            context.Adresses.Add(adresse);
+            context.SaveChanges();
+
         }
 
         public void deleteAdresse(int id_adresse)
         {
             Adresse adr = context.Adresses.Find(id_adresse);
-            if(adr != null)
-            {
                 context.Adresses.Remove(adr);
                 context.SaveChanges();
-            }
-            
         }
 
         public void editAdress(Adresse adresse)
         {
-            Adresse adr = context.Adresses.AsNoTracking().SingleOrDefault(ad => ad.Id == adresse.Id);
-            if(adr != null)
-            {
-                context.Adresses.Attach(adresse);
-                context.Entry(adresse).State = EntityState.Modified;
-                context.SaveChanges();
-            }
+
+            context.Adresses.Attach(adresse);
+            context.Entry(adresse).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public List<Adresse> findByCodePostal(string code_postal)
         {
-            return context.Adresses.AsNoTracking().Where( adr => adr.CodePostal.Equals(code_postal) ).ToList();
+            return context.Adresses.AsNoTracking().Where(adr => adr.CodePostal.Equals(code_postal)).ToList();
         }
 
         public List<Adresse> findByVille(string ville)
         {
-            return context.Adresses.AsNoTracking().Where( adr => adr.Ville.Contains(ville) ).ToList();
+            return context.Adresses.AsNoTracking().Where(adr => adr.Ville.Contains(ville)).ToList();
         }
 
         public Adresse findOneByCoordinates(double axe_x, double axe_y)
         {
-            return (Adresse) context.Adresses.AsNoTracking().Where( adr => adr.Axe_X.Equals(axe_x) && adr.Axe_Y.Equals(axe_y) );
+            return (Adresse)context.Adresses.AsNoTracking().Where(adr => adr.Axe_X.Equals(axe_x) && adr.Axe_Y.Equals(axe_y));
         }
 
         public Adresse findOneById(int id)

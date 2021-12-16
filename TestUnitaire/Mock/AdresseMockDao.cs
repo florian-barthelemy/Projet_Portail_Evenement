@@ -20,31 +20,20 @@ namespace TestUnitaire.Mock
 
         public void createAdress(Adresse adresse)
         {
-            Adresse adresse1 = Adresses.Find(a => a.Axe_X == adresse.Axe_X && a.Axe_Y == adresse.Axe_Y);
-            if (adresse1 == null)
-            { 
-                Adresses.Add(adresse);
-            }
+                Adresses.Add(adresse);  
         }
 
         public void deleteAdresse(int id_adresse)
         {
-
             Adresse adr = Adresses.Find(c=>c.Id ==id_adresse);
-            if (adr != null)
-            {
                 Adresses.Remove(adr);
-            }
         }
 
         public void editAdress(Adresse adresse)
         {
             Adresse adr = Adresses.Find(ad => ad.Id == adresse.Id);
-            if (adr != null)
-            {
                 Adresses.Remove(adr);
                 Adresses.Add(adresse);
-            }
         }
 
         public List<Adresse> findByCodePostal(string code_postal)

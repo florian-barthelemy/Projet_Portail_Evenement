@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestUnitaire.Mock
 {
-   public class PhotoMockDao : IPhoto
+    public class PhotoMockDao : IPhoto
     {
         public List<Photo> Photos;
 
@@ -19,32 +19,20 @@ namespace TestUnitaire.Mock
 
         public void createPhoto(Photo p)
         {
-            Photo dbPhoto =Photos.Find(dp => dp.Id == p.Id);
-            if (dbPhoto == null)
-            {
-                Photos.Add(p);
-            }
+            Photos.Add(p);
         }
 
         public void deletePhoto(int id_photo)
         {
             Photo dbPhoto = Photos.Find(dp => dp.Id == id_photo);
-            if (dbPhoto != null)
-            {
-                Photos.Remove(dbPhoto);
-
-            }
+            Photos.Remove(dbPhoto);
         }
 
         public void editPhoto(Photo p)
         {
-            Photo dbPhoto =Photos.Find(dp => dp.Id == p.Id);
-            if (dbPhoto != null)
-            {
+            Photo dbPhoto = Photos.Find(dp => dp.Id == p.Id);
                 Photos.Remove(dbPhoto);
                 Photos.Add(p);
-
-            }
         }
 
         public List<Photo> findByDateUpload(DateTime dt)
