@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using portal_project.Exceptions;
 using portal_project.Models;
 using portal_project.Service;
 using System;
@@ -38,10 +39,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "Create")]
-        public void CreateCategorie_SameId_Return_Count_Equals1()
+        [ExpectedException(typeof(AlreadyCreatedException))]
+        public void CreateCategorie_SameId_Return_AlreadyCreatedException()
         {
             service.createCategorie(new Categorie(1, "Culturel"));
-            Assert.AreEqual(1, dao.Categories.Count);
         }
 
         [TestMethod]
@@ -56,10 +57,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "Delete")]
-        public void DeleteCategorie_Id_Unknown_Return_Count_Equals1()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void DeleteCategorie_Id_Unknown_Return_NullReferenceException()
         {
             service.deleteCategorie(2);
-            Assert.AreEqual(1, dao.Categories.Count);
         }
 
         [TestMethod]
@@ -75,20 +76,20 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "Edit")]
-        public void EditCategorie_Id_Unknown_Return_Item_NotEdited()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void EditCategorie_Id_Unknown_Return_NullReferenceException()
         {
             Categorie cat = new Categorie(2, "Culturel");
             service.editCategorie(cat);
-            Assert.AreEqual("Sportif", service.findOneById(1).Libelle);
         }
 
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "FindById")]
-        public void FindById_UnknowId_Return_Object_Null()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindById_UnknowId_Return_NullReferenceException()
         {
             Categorie cat = service.findOneById(2);
-            Assert.AreEqual(null, cat);
         }
 
         [TestMethod]
@@ -110,6 +111,15 @@ namespace TestUnitaire
             Assert.AreEqual(1, categories.Count);
         }
 
+        [TestMethod]
+        [TestCategory("Categorie")]
+        [TestProperty("Test Categorie", "FindAll")]
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindAll_Categorie_Return_ListEmptyException()
+        {
+            service.deleteCategorie(1);
+            List<Categorie> categories = service.getAllCategories();
+        }
 
     }
 }

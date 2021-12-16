@@ -15,33 +15,22 @@ namespace portal_project.Dao
 
         public void createCategorie(Categorie categorie)
         {
-            Categorie newCat = context.Categories.SingleOrDefault(e => e.Id == categorie.Id);
-            if (newCat == null)
-            {
-                context.Categories.Add(newCat);
+                context.Categories.Add(categorie);
                 context.SaveChanges();
-            }
         }
 
         public void deleteCategorie(int id_categorie)
         {
             Categorie deletedCat = context.Categories.SingleOrDefault(e => e.Id == id_categorie);
-            if (deletedCat == null)
-            {
                 context.Categories.Remove(deletedCat);
                 context.SaveChanges();
-            }
         }
 
         public void editCategorie(Categorie categorie)
         {
-            Categorie dbCategorie = context.Categories.SingleOrDefault(u => u.Id == categorie.Id);
-            if (dbCategorie != null)
-            {
                 context.Categories.Attach(categorie);
                 context.Entry(categorie).State = EntityState.Modified;
                 context.SaveChanges();
-            }
         }
 
         public Categorie findOneById(int id)
