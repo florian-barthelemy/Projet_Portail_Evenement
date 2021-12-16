@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Dao
 {
-    class PhotoImpl : IPhoto
+    public class PhotoImpl : IPhoto
     {
         MyContext context = new MyContext();
         public void createPhoto(Photo p)
