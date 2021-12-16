@@ -1,8 +1,22 @@
-﻿@model IEnumerable<portal_project.ViewModels.CategoryViewModel>
+﻿
+@model IEnumerable<portal_project.ViewModels.EventViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
-@Html.Partial("_sidebar", Model)
-<h2>Index</h2>
+
+
+<div class="container row">
+        <div class="col-4">
+            @Html.Partial("_sidebar", Model)
+        </div>
+        <div class="col-8">
+            @Html.Partial("_events", ViewData["events"])
+        </div>
+
+</div>
+
+
+
+
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Dao
 {
-    class EventImpl : IEvent
+    public class EventImpl : IEvent
     {
         MyContext context = new MyContext();
         public void createEvent(Event ev)
