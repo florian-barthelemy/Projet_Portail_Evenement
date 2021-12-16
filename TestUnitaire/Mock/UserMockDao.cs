@@ -85,6 +85,22 @@ namespace TestUnitaire.Mock
             return Users.FindAll(u=> u.Prenom.Contains(prenom) && u.Nom.Contains(nom));
         }
 
+        public List<User> findByGenre(char genVal)
+        {
+            if (genVal == 'h')
+            {
+                return Users.FindAll(u => u.UserGenre == User.Genre.Homme);
+            }
+            else if (genVal == 'f')
+            {
+                return Users.FindAll(u => u.UserGenre == User.Genre.Femme);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<User> findByLastName(string nom)
         {
             return Users.FindAll(u => u.Nom.Contains(nom));

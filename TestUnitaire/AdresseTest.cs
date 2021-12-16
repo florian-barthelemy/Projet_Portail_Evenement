@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using portal_project.Exceptions;
 using portal_project.Models;
 using portal_project.Service;
 using System;
@@ -30,7 +31,7 @@ namespace portal_project.test
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Create")]
 
-        public void CreateAdresse_Different_Return_Count_Equals2()
+        public void CreateAdresse_DifferentCoordinates_Return_Count_Equals2()
         {
             service.createAdress(new Adresse(2.318485, 48.842827, "11 Rue Antoine Bourdelle", "75015", "Paris"));
             Assert.AreEqual(2, dao.Adresses.Count);
@@ -39,11 +40,11 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Create")]
+        [ExpectedException(typeof(AlreadyCreatedException))]
 
-        public void CreateAdresse_Same_Return_Count_Equals1()
+        public void CreateAdresse_SameCoordinates_Return_AlreaddyCreatedException()
         {
             service.createAdress(new Adresse(3.062618, 50.637243, "1 rue esquermoise", "59800", "Lille"));
-            Assert.AreEqual(1, dao.Adresses.Count);
         }
 
         [TestMethod]
@@ -58,10 +59,10 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Delete")]
-        public void DeleteAdresse_Id_Unknown_Return_Count_Equals1()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void DeleteAdresse_Id_Unknown_Return_NullReferenceException()
         {
             service.deleteAdresse(2);
-            Assert.AreEqual(1, dao.Adresses.Count);
         }
 
         [TestMethod]
@@ -79,22 +80,21 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Edit")]
-        public void EditAdresse_Id_UnKnown_Return_Item_NotEdited()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void EditAdresse_Id_UnKnown_Return_NullReferenceException()
         {
             Adresse adr = new Adresse(2, 2.318485, 48.842827, "11 Rue Antoine Bourdelle", "75015", "Paris");
             service.editAdress(adr);
-            Assert.AreEqual(3.062618, service.findOneById(1).Axe_X);
-            Assert.AreEqual(50.637243, service.findOneById(1).Axe_Y);
 
         }
 
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindByCp")]
-        public void FindByCp_5_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByCp_5_Return_ListEmptyException()
         {
             List<Adresse> adr = service.findByCodePostal("5");
-            Assert.AreEqual(0, adr.Count);
         }
         [TestMethod]
         [TestCategory("Adresse")]
@@ -117,10 +117,10 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindByVille")]
-        public void FindByVille_Containsp_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByVille_Containsp_Return_ListEmptyException()
         {
             List<Adresse> adr = service.findByVille("p");
-            Assert.AreEqual(0, adr.Count);
         }
 
         [TestMethod]
@@ -135,10 +135,10 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindByCoordinates")]
-        public void FindByCoordinates_CoordinatesParis_Return_Object_Null()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindByCoordinates_CoordinatesParis_Return_NullReferenceException()
         {
             Adresse adr = service.findOneByCoordinates(2.318485, 48.842827);
-            Assert.AreEqual(null, adr);
         }
 
         [TestMethod]
@@ -153,10 +153,11 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindById")]
-        public void FindById_UnkwnonId_Return_Object_Null()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindById_UnkwnonId_Return_NullReferenceException()
         {
             Adresse adr = service.findOneById(2);
-            Assert.AreEqual(null, adr);
+
         }
 
 
@@ -168,6 +169,14 @@ namespace portal_project.test
             List<Adresse> adresses =service.getAllAdresses();
             Assert.AreEqual(1, adresses.Count);
         }
-
+        [TestMethod]
+        [TestCategory("Adresse")]
+        [TestProperty("Test Adresse", "FindAll")]
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindAll_Adresse_Return_()
+        {
+            service.deleteAdresse(1);
+            List<Adresse> adresses = service.getAllAdresses();
+        }
     }
 }
