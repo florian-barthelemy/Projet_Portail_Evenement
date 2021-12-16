@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Service
 {
-   public class EventService
+    public class EventService
     {
         private IEvent dao;
 
@@ -74,6 +74,29 @@ namespace portal_project.Service
 
         public List<Event> getAllEvents()
         {
-            return dao.getAllEvents();        }
+            return dao.getAllEvents();
+        }
+
+        public List<Event> getAllEventsCreatedByUser(User u)
+        {
+            return dao.getAllEvents().Where(e => e.Creator.Id == u.Id).ToList();
+        }
+
+        public List<Event> getAllEventsParticipatedByUser(User u)
+        {
+            List<Event> eventParticipated = new List<Event>();
+            List<Event> allEvents = dao.getAllEvents();
+            foreach(var eve in allEvents){
+                foreach(var participant in eve.Participants)
+                {
+                    if(participant.Id == u.Id)
+                    {
+                        eventParticipated.Add(eve);
+                    }
+                }
+
+        }
+            return eventParticipated;
+        }
     }
 }
