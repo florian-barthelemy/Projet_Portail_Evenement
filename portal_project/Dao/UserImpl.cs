@@ -85,6 +85,22 @@ namespace portal_project.Dao
             return context.Users.AsNoTracking().Where(u => u.Prenom.Contains(prenom) && u.Nom.Contains(nom)).ToList();
         }
 
+        public List<User> findByGenre(char genVal) //'h' ou 'f'
+        {
+            if(genVal == 'h')
+            {
+                return context.Users.AsNoTracking().Where(u => u.UserGenre == User.Genre.Homme).ToList();
+            }
+            else if (genVal == 'f')
+            {
+                return context.Users.AsNoTracking().Where(u => u.UserGenre == User.Genre.Femme).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<User> findByLastName(string nom)
         {
             return context.Users.AsNoTracking().Where(u => u.Nom.Contains(nom)).ToList();
