@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using portal_project.Exceptions;
 using portal_project.Models;
 using portal_project.Service;
 using System;
@@ -21,12 +22,18 @@ namespace TestUnitaire
             {
                 Id = 1
             };
+            Event e = new Event
+            {
+                Id = 1,
+                Titre = "Festival"
+            };
             Photo photo = new Photo
             {
                 Id = 1,
                 DateUpload = new DateTime(2021, 12, 4),
                 PhotoTitle = "CDM",
-                UserUploader = user
+                UserUploader = user,
+                PhotoEvent = e
             };
             dao.Photos.Add(photo);
         }
@@ -192,6 +199,25 @@ namespace TestUnitaire
         {
             List<Photo> photos = service.getAllUserPhoto(new User { Id = 2 });
             Assert.AreEqual(0, photos.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Photo")]
+        [TestProperty("Test Photo", "GetAllEventPhoto")]
+        public void GetAllEventPhoto_IdEventHavePhoto_Return_Count_Equals1()
+        {
+            List<Photo> photos = service.getAllEventPhoto(new Event { Id = 1 });
+            Assert.AreEqual(1, photos.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Photo")]
+        [TestProperty("Test Photo", "GetAllEventPhoto")]
+        [ExpectedException(typeof(ListEmptyException))]
+        public void GetAllEventPhoto_IdEventDoesntHavePhoto_Return_ListEmptyException()
+        {
+            List<Photo> photos = service.getAllEventPhoto(new Event { Id = 2 , Titre="foot"});
+
         }
     }
 }

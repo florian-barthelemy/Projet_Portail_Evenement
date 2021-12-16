@@ -1,4 +1,5 @@
-﻿using portal_project.Metier;
+﻿using portal_project.Exceptions;
+using portal_project.Metier;
 using portal_project.Models;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,19 @@ namespace portal_project.Service
         public List<Photo> getAllUserPhoto(User u)
         {
             return dao.getAllUserPhoto(u);
+        }
+
+        public List<Photo> getAllEventPhoto(Event e)
+        {
+            List<Photo> photos = dao.getAllPhotos().Where(p => p.PhotoEvent.Id == e.Id).ToList();
+            if (photos.Count > 0)
+            {
+                return photos;
+            }
+            else
+            {
+                throw new ListEmptyException("L'évènement "+e.Titre+ " ne contient pas de photos");
+            }
         }
     }
 }
