@@ -1,4 +1,5 @@
-﻿using portal_project.Metier;
+﻿using portal_project.Exceptions;
+using portal_project.Metier;
 using portal_project.Models;
 using System;
 using System.Collections.Generic;
@@ -19,42 +20,107 @@ namespace portal_project.Service
 
         public void createAdress(Adresse adresse)
         {
-            dao.createAdress(adresse);
+            Adresse adresseDb = dao.findOneByCoordinates(adresse.Axe_X, adresse.Axe_Y);
+            if (adresseDb == null)
+            {
+                dao.createAdress(adresse);
+            }
+            else
+            {
+                throw new AlreadyCreatedException("L'adresse que vous essayer de créer existe déjà");
+            }
         }
 
         public void deleteAdresse(int id_adresse)
         {
-            dao.deleteAdresse(id_adresse);
+            Adresse adresseDB = dao.findOneById(id_adresse);
+            if (adresseDB != null)
+            {
+                dao.deleteAdresse(id_adresse);
+            }
+            else
+            {
+                throw new NullReferenceException("L'adresse avec l'id " + id_adresse + " n'existe pas");
+            }
         }
 
         public void editAdress(Adresse adresse)
         {
-            dao.editAdress(adresse);
+            Adresse adresseDB = dao.findOneById(adresse.Id);
+            if (adresseDB != null)
+            {
+                dao.editAdress(adresse);
+            }
+            else
+            {
+                throw new NullReferenceException("L'adresse avec l'id " + adresse.Id + " n'existe pas");
+            }
         }
 
         public List<Adresse> findByCodePostal(string code_postal)
         {
-            return dao.findByCodePostal(code_postal);
+            List<Adresse> adresses= dao.findByCodePostal(code_postal);
+            if (adresses.Count > 0)
+            {
+                return adresses;
+            }
+            else
+            {
+             throw new ListEmptyException("Aucune adresse ne correspond avec le code postal "+code_postal);
+            }
         }
 
         public List<Adresse> findByVille(string ville)
         {
-            return dao.findByVille(ville);
+            List<Adresse> adresses= dao.findByVille(ville);
+            if (adresses.Count > 0)
+            {
+                return adresses;
+            }
+            else
+            {
+                throw new ListEmptyException("Aucune adresse ne correspond avec la ville " + ville);
+            }
         }
 
         public Adresse findOneByCoordinates(double axe_x, double axe_y)
         {
-            return dao.findOneByCoordinates(axe_x, axe_y);
+            Adresse adresse=dao.findOneByCoordinates(axe_x, axe_y);
+            if(adresse== null)
+            {
+                throw new NullReferenceException("Aucune adresse ne correpond avec les" +
+                    " coordonnées ("+axe_x+", "+axe_y+")");
+            }
+            else
+            {
+                return adresse;
+            }
         }
         
         public Adresse findOneById(int id)
         {
-            return dao.findOneById(id);
+            Adresse adresse= dao.findOneById(id);
+            if (adresse != null)
+            {
+                return adresse;
+            }
+            else
+            {
+                throw new NullReferenceException("Aucune adresse ne correpond avec l'id " + id);
+            }
         }
 
         public List<Adresse> getAllAdresses()
         {
-            return dao.getAllAdresses();
+            List<Adresse> adresses= dao.getAllAdresses();
+            if (adresses.Count > 0)
+            {
+                return adresses;
+            }
+            else
+            {
+                throw new ListEmptyException("Aucune adresse n'est enregistré");
+            }
         }
     }
 }

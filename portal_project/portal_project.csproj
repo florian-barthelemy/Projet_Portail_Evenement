@@ -64,6 +64,8 @@
     <Compile Include="Dao\PhotoImpl.cs" />
     <Compile Include="Dao\SousCategorieImpl.cs" />
     <Compile Include="Dao\UserImpl.cs" />
+    <Compile Include="Exceptions\AlreadyCreatedException.cs" />
+    <Compile Include="Exceptions\ListEmptyException.cs" />
     <Compile Include="Metier\IAdresse.cs" />
     <Compile Include="Metier\ICategorie.cs" />
     <Compile Include="Metier\IEvent.cs" />
