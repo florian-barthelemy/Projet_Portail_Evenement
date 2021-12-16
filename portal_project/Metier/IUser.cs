@@ -18,6 +18,7 @@ namespace portal_project.Metier
         List<User> findByLastName(string nom);
         List<User> findByFirstName(string prenom);
         List<User> findByAge(int age, string filter);
+        List<User> findByGenre(char genVal); //'h' ou 'f'
         List<User> findAllUsersByVille(string ville);
         List<User> findAllUsersByCP(string code_postal);
         List<User> getAllAdmins();

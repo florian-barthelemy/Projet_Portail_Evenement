@@ -28,6 +28,8 @@ namespace TestUnitaire
             e.EventSousCat = sousCategorie;
             Categorie categorie = new Categorie() { Libelle = "Sportif" };
             e.EventSousCat.EventCategorie = categorie;
+            e.Creator = new User { Id = 1 };
+            e.Participants = new List<User> { new User { Id = 1 } };
             dao.Events.Add(e);
         }
 
@@ -261,6 +263,45 @@ namespace TestUnitaire
         public void FindBySousCategorie_Hand_Return_Count_Equals0()
         {
             List<Event> events = service.findAllEventsBySousCategorie("Hand");
+            Assert.AreEqual(0, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "getAllEventsCreatedByUser")]
+        public void getAllEventsCreatedByUser_UserWhoCreatedAnEvent_Return_Count_Equals1()
+        {
+            User u = new User { Id = 1 };
+            List<Event> events = service.getAllEventsCreatedByUser(u);
+            Assert.AreEqual(1, events.Count);
+        }
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "getAllEventsCreatedByUser")]
+        public void getAllEventsCreatedByUser_UserWhoDoesntCreatedAnEvent_Return_Count_Equals0()
+        {
+            User u = new User { Id = 2 };
+            List<Event> events = service.getAllEventsCreatedByUser(u);
+            Assert.AreEqual(0, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "getAllEventsParticipatedByUser")]
+        public void getAllEventsParticipatedByUser_UserWhoParticipatedToAnEvent_Return_Count_Equals1()
+        {
+            User u = new User { Id = 1 };
+            List<Event> events = service.getAllEventsParticipatedByUser(u);
+            Assert.AreEqual(1, events.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Event")]
+        [TestProperty("Test Event", "getAllEventsParticipatedByUser")]
+        public void getAllEventsParticipatedByUser_UserWhoDoesntParticipatedToAnEvent_Return_Count_Equals0()
+        {
+            User u = new User { Id = 2 };
+            List<Event> events = service.getAllEventsCreatedByUser(u);
             Assert.AreEqual(0, events.Count);
         }
     }
