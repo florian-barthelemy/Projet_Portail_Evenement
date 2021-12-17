@@ -33,15 +33,11 @@ namespace portal_project.WebUI.Controllers
             photoService = new PhotoService(photoDao);
         }
         // GET: Events
-        public ActionResult Index()
+        public ActionResult Index(string SousCategorie = null)
         {
 
             List<EventViewModel> vm = new List<EventViewModel>();
             List<Event> events = new List<Event>();
-            foreach (Event evenement in evService.getAllEvents())
-            {
-                events.Add(evenement);
-            }
             foreach (Categorie category in catService.getAllCategories())
             {
                 List<SousCategorie> souscats = new List<SousCategorie>();
@@ -50,9 +46,25 @@ namespace portal_project.WebUI.Controllers
                     souscats.Add(souscat);
                 }
 
-                vm.Add(new EventViewModel { Categorie = category, LstSousCategories = souscats});
+                vm.Add(new EventViewModel { Categorie = category, LstSousCategories = souscats });
 
             }
+            if (SousCategorie == null)
+            {
+                foreach (Event evenement in evService.getAllEvents())
+                {
+                    events.Add(evenement);
+                }
+                
+            }
+            else
+            {
+                foreach (Event evenement in evService.findAllEventsBySousCategorie(SousCategorie))
+                {
+                    events.Add(evenement);
+                }
+            }
+
             ViewData["events"] = events;
             //List<SousCategorie> sousCatsLst = souCatService.getAllSousCategories().ToList();
             //List<SelectListItem> sousCats = new List<SelectListItem>() { };
@@ -60,7 +72,7 @@ namespace portal_project.WebUI.Controllers
         }
         public ActionResult Details(int id)
         {
-            
+
             Event evenement = evService.findOneById(id);
             List<Photo> photo = photoService.getAllEventPhoto(evenement);
             evenement.PhotosEvent = photo;
@@ -73,7 +85,7 @@ namespace portal_project.WebUI.Controllers
                 return View(evenement);
             }
 
-            
+
         }
     }
 }

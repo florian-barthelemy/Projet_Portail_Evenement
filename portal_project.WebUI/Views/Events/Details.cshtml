@@ -16,12 +16,12 @@
                 </div>*@
             <div class="carousel-caption d-flex justify-content-between">
                 <div class="d-block">
-                    <h5>@Html.DisplayFor(model => model.Titre)</h5>
-
-                    <p>@Html.DisplayFor(model => model.DateDebut)</p>
+                    <h5 style="color:black">@Html.DisplayFor(model => model.Titre)</h5>
+                    <button class="btn rounded-pill border border-dark bg-navbar" style="height:50px">Participer</button>
+                    
                 </div>
                 
-                <button class="btn rounded-pill border border-dark bg-navbar" style="height:50px">Participer</button>
+                <p>@Html.DisplayFor(model => model.DateDebut)</p>
             </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
