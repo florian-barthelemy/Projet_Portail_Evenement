@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace portal_project.WebUI.Controllers
 {
@@ -86,6 +87,33 @@ namespace portal_project.WebUI.Controllers
             }
 
 
+        }
+        public ActionResult Create()
+        {
+            EventViewModel model = new EventViewModel();
+            model.LstCategories = catService.getAllCategories();
+            model.LstSousCategories = souCatService.getAllSousCategories();
+            model.Event = new Event();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Create(EventViewModel ev)
+        {
+            if (ModelState.IsValid)
+            {
+                Event e = ev.Event;
+                //e.EventSousCat = souCatService.findOneById(e.Id);
+                SousCategorie sousCategorie = souCatService.findOneById(ev.Event.EventSousCat.Id);
+                e.EventSousCat = sousCategorie;
+                //e.EventSousCat.Id = ev.Event.EventSousCat.Id;
+                evService.createEvent(e);
+               
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Index");
+            }
         }
     }
 }
