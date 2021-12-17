@@ -20,29 +20,20 @@ namespace TestUnitaire.Mock
         public void createEvent(Event ev)
         {
             Event ev1 = Events.Find(c => c.Id == ev.Id);
-            if(ev1 == null)
-            {
                 Events.Add(ev);
-            }
         }
 
         public void deleteEvent(int id_event)
         {
             Event event1 = Events.Find(c => c.Id == id_event);
-            if (event1 != null)
-            {
                 Events.Remove(event1);
-            }
         }
 
         public void editEvent(Event ev)
         {
             Event event1 = Events.Find(c => c.Id == ev.Id);
-            if (event1 != null)
-            {
                 Events.Remove(event1);
                 Events.Add(ev);
-            }
         }
 
         public List<Event> findAllEventsByCategorie(string titre)

@@ -21,29 +21,20 @@ namespace TestUnitaire.Mock
         public void createSousCategorie(SousCategorie souscategorie)
         {
             SousCategorie newCat = SousCategories.Find(c => c.Id == souscategorie.Id);
-        if (newCat == null)
-        {
-            SousCategories.Add(newCat);
-        }
+            SousCategories.Add(souscategorie);
     }
 
         public void deleteSousCategorie(int id_sousCategorie)
         {
             SousCategorie deletedCat = SousCategories.Find(e => e.Id == id_sousCategorie);
-            if (deletedCat != null)
-            {
                 SousCategories.Remove(deletedCat);
-            }
         }
 
         public void editSousCategorie(SousCategorie sousCategorie)
         {
             SousCategorie dbCategorie = SousCategories.Find(u => u.Id == sousCategorie.Id);
-            if (dbCategorie != null)
-            {
                 SousCategories.Remove(dbCategorie);
                 SousCategories.Add(sousCategorie);
-            }
         }
 
         public SousCategorie findOneById(int id)

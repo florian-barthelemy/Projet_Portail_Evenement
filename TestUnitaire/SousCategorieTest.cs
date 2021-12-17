@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using portal_project.Exceptions;
 using portal_project.Models;
 using portal_project.Service;
 using System;
@@ -41,11 +42,11 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "Create")]
-        public void CreateSousCategorie_SameId_Return_Count_Equals1()
+        [ExpectedException(typeof(AlreadyCreatedException))]
+        public void CreateSousCategorie_SameId_Return_AlreadyCreatedException()
         {
             SousCategorie sousCategorie = new SousCategorie { Id = 1, Libelle = "Rugby" };
             service.createSousCategorie(sousCategorie);
-            Assert.AreEqual(1, dao.SousCategories.Count);
         }
 
         [TestMethod]
@@ -60,11 +61,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "Delete")]
-        public void DeleteSousCategorie_Id_Unknown_Return_Count_Equals1()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void DeleteSousCategorie_Id_Unknown_Return_NullReferenceException()
         {
-
             service.deleteSousCategorie(2);
-            Assert.AreEqual(1, dao.SousCategories.Count);
         }
 
         [TestMethod]
@@ -80,17 +80,17 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "Edit")]
-        public void EditSousCategorie_Id_Unknown_Return_Item_Edited()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void EditSousCategorie_Id_Unknown_Return_NullReferenceException()
         {
             SousCategorie sousCategorie = new SousCategorie { Id = 2, Libelle = "Rugby" };
             service.editSousCategorie(sousCategorie);
-            Assert.AreEqual("Foot", service.findOneById(1).Libelle);
         }
 
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "FindOneById")]
-        public void FindByIdSousCategorie_Id_Known_Return_()
+        public void FindByIdSousCategorie_Id_Known_Return_Libelle_EqualsFoot()
         {
             SousCategorie sousCategorie = service.findOneById(1);
             Assert.AreEqual("Foot", sousCategorie.Libelle);
@@ -99,10 +99,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "FindOneById")]
-        public void FindByIdSousCategorie_Id_Unknown_Return_()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindByIdSousCategorie_Id_Unknown_Return_NullReferenceException()
         {
             SousCategorie sousCategorie = service.findOneById(2);
-            Assert.AreEqual(null, sousCategorie);
         }
 
         [TestMethod]
@@ -116,6 +116,15 @@ namespace TestUnitaire
 
         [TestMethod]
         [TestCategory("SousCategorie")]
+        [TestProperty("Test SousCategorie", "GetAll")]
+        [ExpectedException(typeof(ListEmptyException))]
+        public void GetAllSousCategorie_Return_ListEmptyException()
+        {
+            service.deleteSousCategorie(1);
+            List<SousCategorie> sousCategories = service.getAllSousCategories();
+        }
+        [TestMethod]
+        [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "GetAllByCategorie")]
         public void GetAllByCategorieSousCategorie_Sportif_Return_Count_Equals1()
         {
@@ -126,10 +135,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "GetAllByCategorie")]
-        public void GetAllByCategorieSousCategorie_Culturel_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void GetAllByCategorieSousCategorie_Culturel_Return_ListEmptyException()
         {
             List<SousCategorie> sousCategories = service.getAllSousCategoriesbyCategorie("Culturel");
-            Assert.AreEqual(0, sousCategories.Count);
         }
 
 

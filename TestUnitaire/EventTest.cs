@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using portal_project.Exceptions;
 using portal_project.Models;
 using portal_project.Service;
 using System;
@@ -52,11 +53,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "Create")]
-        public void CreateEvent_SameId_Return_Count_Equals1()
+        [ExpectedException(typeof(AlreadyCreatedException))]
+        public void CreateEvent_SameId_Return_AlreadyCreatedException()
         {
-
             service.createEvent(new Event() { Id = 1 });
-            Assert.AreEqual(1, dao.Events.Count);
         }
 
         [TestMethod]
@@ -71,10 +71,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "Delete")]
-        public void DeleteEvent_Id_Unknown_Return_Count_Equals1()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void DeleteEvent_Id_Unknown_Return_NullReferenceException()
         {
             service.deleteEvent(2);
-            Assert.AreEqual(1, dao.Events.Count);
         }
 
         [TestMethod]
@@ -90,20 +90,20 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "Edit")]
-        public void EditEvent_Id_Unknown_Return_Item_NotEdited()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void EditEvent_Id_Unknown_Return_NullReferenceException()
         {
             Event e1 = new Event { Id = 2, Titre = "CDM2018" };
             service.editEvent(e1);
-            Assert.AreEqual("CDM", service.findOneById(1).Titre);
         }
 
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindById")]
-        public void FindById_UnknowId_Return_Object_Null()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindById_UnknowId_Return_NullReferenceException()
         {
             Event evt = service.findOneById(2);
-            Assert.AreEqual(null, evt);
         }
 
         [TestMethod]
@@ -124,6 +124,15 @@ namespace TestUnitaire
         }
         [TestMethod]
         [TestCategory("Event")]
+        [TestProperty("Test Event", "FindAll")]
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindAll_Event_Return_ListEmptyException()
+        {
+            service.deleteEvent(1);
+            List<Event> events = service.getAllEvents();
+        }
+        [TestMethod]
+        [TestCategory("Event")]
         [TestProperty("Test Event", "FindByDateDebut")]
         public void FindByDateDebut_CorrectDate_Return_Count_Equals1()
         {
@@ -134,10 +143,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindByDateDebut")]
-        public void FindByDateDebut_IncorrectDate_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByDateDebut_IncorrectDate_Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsByDateDebut(new DateTime(2018, 10, 7));
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -152,10 +161,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindByDateFin")]
-        public void FindByDateFin_InCorrectDate__Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByDateFin_InCorrectDate__Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsByDateFin(new DateTime(2018, 10, 7));
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -163,35 +172,39 @@ namespace TestUnitaire
         [TestProperty("Test event", "FindByIntervalle")]
         public void FindByIntervall_DateDebut_Correct_DateFin_Correct_Return_Count_Equals1()
         {
-            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 9, 7), new DateTime(2018, 12, 12));
+            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 9, 7),
+                new DateTime(2018, 12, 12));
             Assert.AreEqual(1, events.Count);
         }
 
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test event", "FindByIntervalle")]
-        public void FindByIntervall_DateDebut_Incorrect_DateFin_Correct_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByIntervall_DateDebut_Incorrect_DateFin_Correct_Return_ListEmptyException()
         {
-            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 10, 7), new DateTime(2018, 12, 12));
-            Assert.AreEqual(0, events.Count);
+            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 10, 7),
+                new DateTime(2018, 12, 12));
         }
 
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test event", "FindByIntervalle")]
-        public void FindByIntervall_DateDebut_Correct_DateFin_Incorrect_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByIntervall_DateDebut_Correct_DateFin_Incorrect_Return_ListEmptyException()
         {
-            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 9, 7), new DateTime(2018, 11, 12));
-            Assert.AreEqual(0, events.Count);
+            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 9, 7)
+                , new DateTime(2018, 11, 12));
         }
 
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test event", "FindByIntervalle")]
-        public void FindByIntervall_DateDebut_Incorrect_DateFin_Incorrect_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByIntervall_DateDebut_Incorrect_DateFin_Incorrect_Return_ListEmptyException()
         {
-            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 10, 7), new DateTime(2018, 11, 12));
-            Assert.AreEqual(0, events.Count);
+            List<Event> events = service.findAllEventsByDateInterval(new DateTime(2018, 10, 7), 
+                new DateTime(2018, 11, 12));
         }
 
         [TestMethod]
@@ -206,10 +219,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindByTitre")]
-        public void FindByTitre_CDM2018_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByTitre_CDM2018_Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsByTitre("CDM2018");
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -224,10 +237,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindByVille")]
-        public void FindByVille_Paris_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByVille_Paris_Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsByVille("Paris");
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -242,10 +255,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindByCategorie")]
-        public void FindByCategorie_Culturel_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindByCategorie_Culturel_Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsByCategorie("Culturel");
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -260,10 +273,10 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindBySousCategorie")]
-        public void FindBySousCategorie_Hand_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void FindBySousCategorie_Hand_Return_ListEmptyException()
         {
             List<Event> events = service.findAllEventsBySousCategorie("Hand");
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -278,11 +291,11 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "getAllEventsCreatedByUser")]
-        public void getAllEventsCreatedByUser_UserWhoDoesntCreatedAnEvent_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void getAllEventsCreatedByUser_UserWhoDoesntCreatedAnEvent_Return_ListEmptyException()
         {
             User u = new User { Id = 2 };
             List<Event> events = service.getAllEventsCreatedByUser(u);
-            Assert.AreEqual(0, events.Count);
         }
 
         [TestMethod]
@@ -298,11 +311,11 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "getAllEventsParticipatedByUser")]
-        public void getAllEventsParticipatedByUser_UserWhoDoesntParticipatedToAnEvent_Return_Count_Equals0()
+        [ExpectedException(typeof(ListEmptyException))]
+        public void getAllEventsParticipatedByUser_UserWhoDoesntParticipatedToAnEvent_Return_ListEmptyException()
         {
             User u = new User { Id = 2 };
             List<Event> events = service.getAllEventsCreatedByUser(u);
-            Assert.AreEqual(0, events.Count);
         }
     }
 }
