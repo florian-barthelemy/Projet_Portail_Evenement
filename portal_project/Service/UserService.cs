@@ -75,5 +75,9 @@ namespace portal_project.Service
         {
             return dao.getAllUsers();
         }
+        List<User> findByGenre(char genVal)
+        {
+            return dao.findByGenre(genVal);
+        }
     }
 }
