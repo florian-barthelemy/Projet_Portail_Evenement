@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Dao
 {
-    class UserImpl : IUser
+   public class UserImpl : IUser
     {
         MyContext context = new MyContext();
         public void createUser(User user)
