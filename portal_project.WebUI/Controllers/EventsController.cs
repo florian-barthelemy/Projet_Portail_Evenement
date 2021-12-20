@@ -4,6 +4,7 @@ using portal_project.Service;
 using portal_project.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,6 +22,8 @@ namespace portal_project.WebUI.Controllers
         private EventImpl evDao;
         private PhotoService photoService;
         private PhotoImpl photoDao;
+        private AdresseService adresseService;
+        private AdresseImpl adresseDao;
 
         public EventsController()
         {
@@ -32,6 +35,8 @@ namespace portal_project.WebUI.Controllers
             evService = new EventService(evDao);
             photoDao = new PhotoImpl();
             photoService = new PhotoService(photoDao);
+            adresseDao = new AdresseImpl();
+            adresseService = new AdresseService(adresseDao);
         }
         // GET: Events
         public ActionResult Index(string SousCategorie = null)
@@ -56,7 +61,7 @@ namespace portal_project.WebUI.Controllers
                 {
                     events.Add(evenement);
                 }
-                
+
             }
             else
             {
@@ -90,28 +95,40 @@ namespace portal_project.WebUI.Controllers
         }
         public ActionResult Create()
         {
-            EventViewModel model = new EventViewModel();
-            model.LstCategories = catService.getAllCategories();
-            model.LstSousCategories = souCatService.getAllSousCategories();
-            model.Event = new Event();
-            return View(model);
+            ViewData["sousCats"] = souCatService.getAllSousCategories().ToList();
+
+            return View();
         }
         [HttpPost]
-        public ActionResult Create(EventViewModel ev)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Event ev, HttpPostedFileBase photo)
         {
+
             if (ModelState.IsValid)
             {
-                Event e = ev.Event;
-                //e.EventSousCat = souCatService.findOneById(e.Id);
-                SousCategorie sousCategorie = souCatService.findOneById(ev.Event.EventSousCat.Id);
-                e.EventSousCat = sousCategorie;
-                //e.EventSousCat.Id = ev.Event.EventSousCat.Id;
-                evService.createEvent(e);
-               
+                string extension = Path.GetExtension(photo.FileName);
+                if (extension.Equals(".png") || extension.Equals(".jpeg") || extension.Equals(".jpg"))
+                {
+
+                    string fileName = ev.Titre + extension;  //Personaliser le nom de la photo
+                    ev.PhotosEvent = new List<Photo>();
+                    ev.PhotosEvent.Add(new Photo { PhotoTitle = fileName, PhotoEvent = ev });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
+                    string path = Server.MapPath("~/Images/" + fileName); // /Content/Photos/user1.jpg
+                    photo.SaveAs(path);
+                }
+                else
+                {
+                    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
+                }
+
+                //adresseService.createAdress(ev.EventAdresse);
+                evService.createEvent(ev);
+
                 return RedirectToAction("Index");
             }
             else
             {
+
                 return View("Index");
             }
         }

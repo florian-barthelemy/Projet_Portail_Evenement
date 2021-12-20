@@ -12,7 +12,6 @@ namespace portal_project.ViewModels
         public Categorie Categorie { get; set; }
         public IEnumerable<SousCategorie> LstSousCategories { get; set; }
         public IEnumerable<Event> LstEvents { get; set; }
-        public Event Event { get; set; }
         public IEnumerable<Categorie> LstCategories { get; set; }
 
     }
