@@ -403,5 +403,22 @@ namespace TestUnitaire
             Assert.AreEqual(1, users.Count);
         }
 
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByMail")]
+        public void FindByMail_KnownEmail_Return_Nom_EqualsJehann()
+        {
+            User u = service.findByMail("jehan@lille.com");
+            Assert.AreEqual("Jehann", u.Nom);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "FindByMail")]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void FindByMail_UnknownEmail_Return_NullReferenceException()
+        {
+            User u = service.findByMail("jehan2@lille.com");
+        }
     }
 }

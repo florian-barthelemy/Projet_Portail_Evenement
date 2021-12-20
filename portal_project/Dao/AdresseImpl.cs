@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace portal_project.Dao
 {
-    class AdresseImpl : IAdresse
+    public class AdresseImpl : IAdresse
     {
         MyContext context = new MyContext();
         public void createAdress(Adresse adresse)

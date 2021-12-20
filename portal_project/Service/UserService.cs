@@ -218,5 +218,18 @@ namespace portal_project.Service
                 throw new ArgumentException("Le genre " + genVal + " rentré n'est pas compatible pour cette recherche ");
             }
         }
+
+        public User findByMail(string email)
+        {
+            User u = dao.getAllUsers().SingleOrDefault(user=>user.Email.Equals(email));
+            if (u != null)
+            {
+                return u;
+            }
+            else
+            {
+                throw new NullReferenceException("L'utilisateur avec l'email " + email + " n'existe pas");
+            }
+        }
     }
 }

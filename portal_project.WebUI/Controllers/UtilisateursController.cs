@@ -12,17 +12,19 @@ namespace portal_project.WebUI.Controllers
 {
     public class UtilisateursController : Controller
     {
-        UserService service;
+        UserService userService;
+       // AdresseService adresseService;
 
         public UtilisateursController()
         {
-            service = new UserService(new UserImpl());
+            userService = new UserService(new UserImpl());
+            // adresseService = new AdresseService(new AdresseImpl());
         }
 
         // GET: Utilisateur
         public ActionResult Index()
         {
-            List<User> users = service.getAllUsers();
+            List<User> users = userService.getAllUsers();
             return View(users);
         }
 
@@ -34,7 +36,7 @@ namespace portal_project.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserAdresseViewModel u)
+        public ActionResult Create(UserAdresseViewModel u,string ConfirmPassword)
         {
             if (!ModelState.IsValid)
             {
@@ -42,12 +44,24 @@ namespace portal_project.WebUI.Controllers
             }
             else
             {
-                try
+                if (ConfirmPassword.Equals(u.User.Password))
                 {
-                    return RedirectToAction("Index");
+                    try
+                    {
+                        User uSave = u.User;
+                        uSave.MainAdresse = u.Adresse;
+                        userService.createUser(uSave);
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.error = e.Message;
+                        return View(u);
+                    }
                 }
-                catch(Exception e){
-                    ViewBag.error = e.Message;
+                else
+                {
+                    ViewBag.errorPassword = "Les 2 mots de passes ne correspondent pas";
                     return View(u);
                 }
             }
