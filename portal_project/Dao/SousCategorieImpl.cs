@@ -36,7 +36,7 @@ namespace portal_project.Dao
 
         public SousCategorie findOneById(int id)
         {
-            return context.SousCategories.SingleOrDefault(e => e.Id == id);
+            return context.SousCategories.AsNoTracking().SingleOrDefault(e => e.Id == id);
         }
 
         public List<SousCategorie> getAllSousCategories()

@@ -14,7 +14,9 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
 
+        //[Required]
         public double Axe_X { get; set; }
+        //[Required]
         public double Axe_Y { get; set; }
         [Required]
         [DataType(DataType.Text)]

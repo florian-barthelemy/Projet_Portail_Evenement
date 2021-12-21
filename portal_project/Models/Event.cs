@@ -34,7 +34,9 @@ namespace portal_project.Models
         [Range(0,18)]
         public int MinAge { get; set; }
         public virtual List<Photo> PhotosEvent { get; set; }
-        public virtual SousCategorie EventSousCat { get; set; }
+        [ForeignKey("EventSousCatId")]
+        public SousCategorie EventSousCat { get; set; }
+        public int? EventSousCatId { get; set; }
         public Event(int id, string titre, string description,
                     Adresse eventAdresse, DateTime dateDebut, DateTime dateFin,
                     List<User> participants, List<User> intervenants, User creator, double tarif, int minAge, List<Photo> photosEvent)

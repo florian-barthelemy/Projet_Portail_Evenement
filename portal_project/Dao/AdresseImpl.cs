@@ -47,7 +47,9 @@ namespace portal_project.Dao
 
         public Adresse findOneByCoordinates(double axe_x, double axe_y)
         {
-            return (Adresse)context.Adresses.AsNoTracking().Where(adr => adr.Axe_X.Equals(axe_x) && adr.Axe_Y.Equals(axe_y));
+            Adresse adresse = new Adresse();
+            adresse = context.Adresses.AsNoTracking().Where(adr => adr.Axe_X.Equals(axe_x) && adr.Axe_Y.Equals(axe_y)).FirstOrDefault();
+            return adresse;
         }
 
         public Adresse findOneById(int id)

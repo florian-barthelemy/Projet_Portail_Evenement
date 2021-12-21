@@ -100,6 +100,14 @@
     <Compile Include="Migrations\202112060929494_Ajout_Type_Evenements.designer.cs">
       <DependentUpon>202112060929494_Ajout_Type_Evenements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112201044454_FixAdress.cs" />
+    <Compile Include="Migrations\202112201044454_FixAdress.designer.cs">
+      <DependentUpon>202112201044454_FixAdress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112201351193_CorrectEvent.cs" />
+    <Compile Include="Migrations\202112201351193_CorrectEvent.designer.cs">
+      <DependentUpon>202112201351193_CorrectEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -156,6 +164,7 @@
     <Compile Include="Service\PhotoService.cs" />
     <Compile Include="Service\SousCategorieService.cs" />
     <Compile Include="Service\UserService.cs" />
+    <Compile Include="ViewModels\EventSousCatViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\UserAdresseViewModel.cs" />
     <Compile Include="ViewModels\UserLogViewModel.cs" />
@@ -215,6 +224,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112060929494_Ajout_Type_Evenements.resx">
       <DependentUpon>202112060929494_Ajout_Type_Evenements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112201044454_FixAdress.resx">
+      <DependentUpon>202112201044454_FixAdress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112201351193_CorrectEvent.resx">
+      <DependentUpon>202112201351193_CorrectEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
