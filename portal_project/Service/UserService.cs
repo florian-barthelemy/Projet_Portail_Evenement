@@ -92,6 +92,25 @@ namespace portal_project.Service
             }
         }
 
+        public User CheckLogin(string email, string password)
+        {
+            try
+            {
+                User u = findByMail(email);
+                if (!u.Password.Equals(password))
+                {
+                    throw new ArgumentException("Le mot de passe ne correspond pas avec l'email");
+                }
+                else
+                {
+                    return u;
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<User> findByAge(int age, string filter)
         {
             if (filter == ">=" || filter == "<=" || filter == "=")

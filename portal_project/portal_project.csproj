@@ -158,6 +158,7 @@
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\UserAdresseViewModel.cs" />
+    <Compile Include="ViewModels\UserLogViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-navbar sticky-top">
+﻿@using portal_project.ViewModels;
+<nav class="navbar navbar-expand-lg navbar-light bg-navbar sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand p-0 mr-10" href="#">
             <img src="~/Content/images/logo.png" alt="" srcset="" height="70" class="d-inline-block">
@@ -35,12 +36,30 @@
         </div>
         <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav  mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
-                </li>
+                @if (Session["User"] == null)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Connexion","Login","Utilisateurs",null, new { @class = "nav-link"})
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inscription</a>
+                    </li>
+                }
+            else
+            {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" 
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    @((Session["User"] as UserLogViewModel).FullName)
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+            <li class="nav-item">
+                @Html.ActionLink("Déconnexion", "Logout", "Utilisateurs", null, new { @class = "nav-link" })
+            </li>
+                </ul>
+            </li>
+            }
+
             </ul>
 
         </div>

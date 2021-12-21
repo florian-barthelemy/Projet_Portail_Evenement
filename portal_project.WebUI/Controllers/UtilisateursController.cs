@@ -13,7 +13,7 @@ namespace portal_project.WebUI.Controllers
     public class UtilisateursController : Controller
     {
         UserService userService;
-       // AdresseService adresseService;
+        // AdresseService adresseService;
 
         public UtilisateursController()
         {
@@ -36,7 +36,7 @@ namespace portal_project.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserAdresseViewModel u,string ConfirmPassword)
+        public ActionResult Create(UserAdresseViewModel u, string ConfirmPassword)
         {
             if (!ModelState.IsValid)
             {
@@ -64,6 +64,38 @@ namespace portal_project.WebUI.Controllers
                     ViewBag.errorPassword = "Les 2 mots de passes ne correspondent pas";
                     return View(u);
                 }
+            }
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password)
+        {
+            if (ModelState.IsValid)
+            {
+                User u = userService.CheckLogin(email, password);
+                if (u == null)
+                {
+                    ModelState.Clear();
+                    ViewBag.ErrorLog = "L'adresse renseignée n'existe pas ou le mot de passe est faux";
+                    return View();
+                }
+                else
+                {
+                    //Connexion a reussi
+                    Session["User"] = new UserLogViewModel { Id = u.Id, IsAdmin = u.IsAdmin, FullName = u.Prenom + " " + u.Nom };
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ViewBag.ErrorLog = "Le pseudo ou le mot de passe ne sont pas renseignés";
+                return View();
             }
         }
     }

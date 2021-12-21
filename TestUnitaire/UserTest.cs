@@ -18,7 +18,7 @@ namespace TestUnitaire
         {
             dao = new UserMockDao();
             service = new UserService(dao);
-            User u = new User { Id = 1, Nom = "Jehann", Prenom = "Lille", Email = "jehan@lille.com", IsAdmin = true };
+            User u = new User { Id = 1, Nom = "Jehann", Prenom = "Lille", Email = "jehan@lille.com", IsAdmin = true , Password="jehann"};
             DateTime dateNaissance = DateTime.Now;
             dateNaissance = dateNaissance.AddYears(-3);
             Adresse adresse = new Adresse(1, 3.062618, 50.637243, "1 rue esquermoise", "59800", "Lille");
@@ -420,5 +420,33 @@ namespace TestUnitaire
         {
             User u = service.findByMail("jehan2@lille.com");
         }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "CheckLogin")]
+        public void CheckLogin_CorrectEmail_CorrectPassword_Return_UserName_EqualsJehann()
+        {
+            User u = service.CheckLogin("jehan@lille.com", "jehann");
+            Assert.AreEqual("Jehann", u.Nom);
+        }
+
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "CheckLogin")]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void CheckLogin_BadEmail_Return_NullReferenceException()
+        {
+            User u = service.CheckLogin("jehan2@lille.com", "jehann");
+            Assert.AreEqual("Jehann", u.Nom);
+        }
+        [TestMethod]
+        [TestCategory("User")]
+        [TestProperty("Test User", "CheckLogin")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CheckLogin_CorrectEmail_BadPassword_Return_ArgumentException()
+        {
+            User u = service.CheckLogin("jehan@lille.com", "jehan");
+        }
+
     }
 }
