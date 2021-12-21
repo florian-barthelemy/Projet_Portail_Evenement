@@ -55,20 +55,27 @@ namespace portal_project.WebUI.Controllers
                 vm.Add(new EventViewModel { Categorie = category, LstSousCategories = souscats });
 
             }
-            if (SousCategorie == null)
+            try
             {
-                foreach (Event evenement in evService.getAllEvents())
+                if (SousCategorie == null)
                 {
-                    events.Add(evenement);
-                }
+                    foreach (Event evenement in evService.getAllEvents())
+                    {
+                        events.Add(evenement);
+                    }
 
-            }
-            else
-            {
-                foreach (Event evenement in evService.findAllEventsBySousCategorie(SousCategorie))
-                {
-                    events.Add(evenement);
                 }
+                else
+                {
+                    foreach (Event evenement in evService.findAllEventsBySousCategorie(SousCategorie))
+                    {
+                        events.Add(evenement);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
             }
 
             ViewData["events"] = events;
@@ -110,10 +117,12 @@ namespace portal_project.WebUI.Controllers
                 if (extension.Equals(".png") || extension.Equals(".jpeg") || extension.Equals(".jpg"))
                 {
 
-                    string fileName = ev.Titre + extension;  //Personaliser le nom de la photo
+                    string fileName = ev.Titre + extension;
+                    string path = Server.MapPath("~/Images/" + fileName);  //Personaliser le nom de la photo
                     ev.PhotosEvent = new List<Photo>();
-                    ev.PhotosEvent.Add(new Photo { PhotoTitle = fileName, PhotoEvent = ev });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
-                    string path = Server.MapPath("~/Images/" + fileName); // /Content/Photos/user1.jpg
+                    ev.PhotosEvent.Add(new Photo {PhotoLocation= path, PhotoTitle = fileName,PhotoDescription= "Photo de " + ev.Titre, PhotoEvent = ev, DateUpload= DateTime.Now });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
+                     // /Content/Photos/user1.jpg
+                    
                     photo.SaveAs(path);
                 }
                 else
@@ -121,7 +130,7 @@ namespace portal_project.WebUI.Controllers
                     return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
                 }
 
-                //adresseService.createAdress(ev.EventAdresse);
+                adresseService.createAdress(ev.EventAdresse);
                 evService.createEvent(ev);
 
                 return RedirectToAction("Index");

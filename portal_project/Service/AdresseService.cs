@@ -21,7 +21,7 @@ namespace portal_project.Service
         public void createAdress(Adresse adresse)
         {
             Adresse adresseDb = dao.findOneByCoordinates(adresse.Axe_X, adresse.Axe_Y);
-            if (adresseDb == null)
+            if (adresseDb == null || (adresse.Axe_X == 0 && adresse.Axe_Y == 0))
             {
                 dao.createAdress(adresse);
             }
