@@ -84,8 +84,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Photo")]
         [TestProperty("Test Photo", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeletePhoto_DifferentId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void DeletePhoto_DifferentId_Return_NotFoundException()
         {
             service.deletePhoto(2);
 
@@ -108,8 +108,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Photo")]
         [TestProperty("Test Photo", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditPhoto_UnknownId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditPhoto_UnknownId_Return_NotFoundException()
         {
             Photo photo = new Photo
             {
@@ -169,8 +169,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Photo")]
         [TestProperty("Test Photo", "FindOneById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindByIdPhoto_UnknownId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindByIdPhoto_UnknownId_Return_NotFoundException()
         {
             Photo photo = service.findOneById(2);
         }

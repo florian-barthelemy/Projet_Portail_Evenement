@@ -40,7 +40,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La catégorie avec l'id " + categorie.Id
+                throw new NotFoundException("La catégorie avec l'id " + categorie.Id
                     + " n'existe pas");
             }
         }
@@ -54,7 +54,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La catégorie avec l'id " +
+                throw new NotFoundException("La catégorie avec l'id " +
                     id_categorie + "n'existe pas");
             }
         }
@@ -81,7 +81,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La catégorie avec l'id " + id + " n'existe pas");
+                throw new NotFoundException("La catégorie avec l'id " + id + " n'existe pas");
             }
         }
 

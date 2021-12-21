@@ -21,7 +21,7 @@ namespace portal_project.Service
         public void createUser(User user)
         {
             User u = dao.findOneById(user.Id);
-            User u2 = dao.getAllUsers().SingleOrDefault(u3 => u3.Email==user.Email);
+            User u2 = dao.getAllUsers().SingleOrDefault(u3 => u3.Email == user.Email);
             if (u == null)
             {
                 if (u2 == null)
@@ -49,7 +49,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'utilisateur avec l'id " + id_user + " n'existe pas");
+                throw new NotFoundException("L'utilisateur avec l'id " + id_user + " n'existe pas");
             }
         }
 
@@ -62,7 +62,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'utilisateur avec l'id " + user.Id + " n'existe pas");
+                throw new NotFoundException("L'utilisateur avec l'id " + user.Id + " n'existe pas");
             }
         }
 
@@ -94,9 +94,10 @@ namespace portal_project.Service
 
         public User CheckLogin(string email, string password)
         {
+
             try
             {
-                User u = findByMail(email);
+            User u = findByMail(email);
                 if (!u.Password.Equals(password))
                 {
                     throw new ArgumentException("Le mot de passe ne correspond pas avec l'email");
@@ -105,7 +106,8 @@ namespace portal_project.Service
                 {
                     return u;
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -181,13 +183,13 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'utilisateur avec l'id " + id + " n'existe pas");
+                throw new NotFoundException("L'utilisateur avec l'id " + id + " n'existe pas");
             }
         }
 
         public List<User> getAllAdmins()
-        { 
-            List<User> users= dao.getAllAdmins();
+        {
+            List<User> users = dao.getAllAdmins();
             if (users.Count > 0)
             {
                 return users;
@@ -199,7 +201,7 @@ namespace portal_project.Service
         }
         public List<User> getAllUsers()
         {
-            List<User> users= dao.getAllUsers();
+            List<User> users = dao.getAllUsers();
             if (users.Count > 0)
             {
                 return users;
@@ -240,14 +242,14 @@ namespace portal_project.Service
 
         public User findByMail(string email)
         {
-            User u = dao.getAllUsers().SingleOrDefault(user=>user.Email.Equals(email));
+            User u = dao.getAllUsers().SingleOrDefault(user => user.Email.Equals(email));
             if (u != null)
             {
                 return u;
             }
             else
             {
-                throw new NullReferenceException("L'utilisateur avec l'email " + email + " n'existe pas");
+                throw new NotFoundException("L'utilisateur avec l'email " + email + " n'existe pas");
             }
         }
     }

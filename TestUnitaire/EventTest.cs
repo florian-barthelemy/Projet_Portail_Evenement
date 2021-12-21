@@ -71,8 +71,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteEvent_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void DeleteEvent_Id_Unknown_Return_NotFoundException()
         {
             service.deleteEvent(2);
         }
@@ -90,8 +90,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditEvent_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditEvent_Id_Unknown_Return_NotFoundException()
         {
             Event e1 = new Event { Id = 2, Titre = "CDM2018" };
             service.editEvent(e1);
@@ -100,8 +100,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Event")]
         [TestProperty("Test Event", "FindById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindById_UnknowId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindById_UnknowId_Return_NotFoundException()
         {
             Event evt = service.findOneById(2);
         }

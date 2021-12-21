@@ -94,7 +94,7 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("User")]
         [TestProperty("Test User", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(NotFoundException))]
         public void DeleteUser_Id_UnKnown_Return_NullReferencException()
         {
             service.deleteUser(2);
@@ -118,8 +118,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("User")]
         [TestProperty("Test User", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditUser_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditUser_Id_Unknown_Return_NotFoundException()
         {
             User user1 = new User()
             {
@@ -200,8 +200,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("User")]
         [TestProperty("Test User", "FindOneById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindById_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindById_Id_Unknown_Return_NotFoundException()
         {
             User u1 = service.findOneById(2);
         }
@@ -415,8 +415,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("User")]
         [TestProperty("Test User", "FindByMail")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindByMail_UnknownEmail_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindByMail_UnknownEmail_Return_NotFoundException()
         {
             User u = service.findByMail("jehan2@lille.com");
         }
@@ -433,8 +433,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("User")]
         [TestProperty("Test User", "CheckLogin")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void CheckLogin_BadEmail_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void CheckLogin_BadEmail_Return_NotFoundException()
         {
             User u = service.CheckLogin("jehan2@lille.com", "jehann");
             Assert.AreEqual("Jehann", u.Nom);

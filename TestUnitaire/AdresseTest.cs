@@ -59,8 +59,8 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteAdresse_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void DeleteAdresse_Id_Unknown_Return_NotFoundException()
         {
             service.deleteAdresse(2);
         }
@@ -80,8 +80,8 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditAdresse_Id_UnKnown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditAdresse_Id_UnKnown_Return_NotFoundException()
         {
             Adresse adr = new Adresse(2, 2.318485, 48.842827, "11 Rue Antoine Bourdelle", "75015", "Paris");
             service.editAdress(adr);
@@ -135,8 +135,8 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindByCoordinates")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindByCoordinates_CoordinatesParis_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindByCoordinates_CoordinatesParis_Return_NotFoundException()
         {
             Adresse adr = service.findOneByCoordinates(2.318485, 48.842827);
         }
@@ -153,8 +153,8 @@ namespace portal_project.test
         [TestMethod]
         [TestCategory("Adresse")]
         [TestProperty("Test Adresse", "FindById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindById_UnkwnonId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindById_UnkwnonId_Return_NotFoundException()
         {
             Adresse adr = service.findOneById(2);
 

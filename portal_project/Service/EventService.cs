@@ -40,7 +40,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'évènement avec l'id "
+                throw new NotFoundException("L'évènement avec l'id "
                     + id_event + " n'existe pas");
             }
         }
@@ -54,7 +54,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'évènement avec l'id " + ev.Id +
+                throw new NotFoundException("L'évènement avec l'id " + ev.Id +
                      " n'existe pas");
             }
         }
@@ -161,7 +161,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'évènement avec l'id " + id + " n'existe pas");
+                throw new NotFoundException("L'évènement avec l'id " + id + " n'existe pas");
             }
         }
 

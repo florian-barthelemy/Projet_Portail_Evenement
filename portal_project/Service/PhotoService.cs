@@ -40,7 +40,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La photo avec l'id "+id_photo+" n'existe pas");
+                throw new NotFoundException("La photo avec l'id "+id_photo+" n'existe pas");
             }
         }
 
@@ -53,7 +53,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La photo avec l'id " + p.Id + " n'existe pas");
+                throw new NotFoundException("La photo avec l'id " + p.Id + " n'existe pas");
             }
         }
 
@@ -92,7 +92,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("Aucune photo n'est associé à l'id " + id);
+                throw new NotFoundException("Aucune photo n'est associé à l'id " + id);
             }
         }
 

@@ -40,7 +40,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La sous catégorie avec l'id " + sousCategorie.Id + " n'existe pas");
+                throw new NotFoundException("La sous catégorie avec l'id " + sousCategorie.Id + " n'existe pas");
             }
         }
 
@@ -53,7 +53,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La sous catégorie avec l'id " + id_categorie + " n'existe pas");
+                throw new NotFoundException("La sous catégorie avec l'id " + id_categorie + " n'existe pas");
             }
         }
 
@@ -92,7 +92,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("La sous catégorie avec l'id " + id + " n'existe pas");
+                throw new NotFoundException("La sous catégorie avec l'id " + id + " n'existe pas");
             }
         }
     }

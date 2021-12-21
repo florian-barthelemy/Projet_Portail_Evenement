@@ -57,8 +57,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteCategorie_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void DeleteCategorie_Id_Unknown_Return_NotFoundException()
         {
             service.deleteCategorie(2);
         }
@@ -76,8 +76,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditCategorie_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditCategorie_Id_Unknown_Return_NotFoundException()
         {
             Categorie cat = new Categorie(2, "Culturel");
             service.editCategorie(cat);
@@ -86,8 +86,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("Categorie")]
         [TestProperty("Test Categorie", "FindById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindById_UnknowId_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindById_UnknowId_Return_NotFoundException()
         {
             Categorie cat = service.findOneById(2);
         }

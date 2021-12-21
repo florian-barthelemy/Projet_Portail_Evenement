@@ -40,7 +40,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'adresse avec l'id " + id_adresse + " n'existe pas");
+                throw new NotFoundException("L'adresse avec l'id " + id_adresse + " n'existe pas");
             }
         }
 
@@ -53,7 +53,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("L'adresse avec l'id " + adresse.Id + " n'existe pas");
+                throw new NotFoundException("L'adresse avec l'id " + adresse.Id + " n'existe pas");
             }
         }
 
@@ -88,7 +88,7 @@ namespace portal_project.Service
             Adresse adresse=dao.findOneByCoordinates(axe_x, axe_y);
             if(adresse== null)
             {
-                throw new NullReferenceException("Aucune adresse ne correpond avec les" +
+                throw new NotFoundException("Aucune adresse ne correpond avec les" +
                     " coordonnées ("+axe_x+", "+axe_y+")");
             }
             else
@@ -106,7 +106,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new NullReferenceException("Aucune adresse ne correpond avec l'id " + id);
+                throw new NotFoundException("Aucune adresse ne correpond avec l'id " + id);
             }
         }
 

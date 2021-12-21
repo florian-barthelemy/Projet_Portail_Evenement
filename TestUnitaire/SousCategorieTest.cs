@@ -61,8 +61,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "Delete")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteSousCategorie_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void DeleteSousCategorie_Id_Unknown_Return_NotFoundException()
         {
             service.deleteSousCategorie(2);
         }
@@ -80,8 +80,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "Edit")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void EditSousCategorie_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void EditSousCategorie_Id_Unknown_Return_NotFoundException()
         {
             SousCategorie sousCategorie = new SousCategorie { Id = 2, Libelle = "Rugby" };
             service.editSousCategorie(sousCategorie);
@@ -99,8 +99,8 @@ namespace TestUnitaire
         [TestMethod]
         [TestCategory("SousCategorie")]
         [TestProperty("Test SousCategorie", "FindOneById")]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindByIdSousCategorie_Id_Unknown_Return_NullReferenceException()
+        [ExpectedException(typeof(NotFoundException))]
+        public void FindByIdSousCategorie_Id_Unknown_Return_NotFoundException()
         {
             SousCategorie sousCategorie = service.findOneById(2);
         }

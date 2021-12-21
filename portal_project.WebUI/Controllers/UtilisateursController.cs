@@ -78,18 +78,18 @@ namespace portal_project.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                User u = userService.CheckLogin(email, password);
-                if (u == null)
+                try
                 {
-                    ModelState.Clear();
-                    ViewBag.ErrorLog = "L'adresse renseignée n'existe pas ou le mot de passe est faux";
-                    return View();
-                }
-                else
-                {
-                    //Connexion a reussi
+                    User u = userService.CheckLogin(email, password);
                     Session["User"] = new UserLogViewModel { Id = u.Id, IsAdmin = u.IsAdmin, FullName = u.Prenom + " " + u.Nom };
                     return RedirectToAction("Index", "Accueil");
+
+                }
+                catch(Exception ex)
+                {
+                    ModelState.Clear();
+                    ViewBag.ErrorLog = ex.Message;
+                    return View();
                 }
             }
             else
