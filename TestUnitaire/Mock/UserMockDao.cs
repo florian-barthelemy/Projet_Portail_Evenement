@@ -19,30 +19,20 @@ namespace TestUnitaire.Mock
 
         public void createUser(User user)
         {
-            User User1 =Users.Find(u => u.Id == user.Id || u.Email == user.Email);
-            if (User1 == null)
-            {
                 Users.Add(user);
-            }
         }
 
         public void deleteUser(int id_user)
         {
             User User1 = Users.Find(u => u.Id == id_user);
-            if (User1 != null)
-            {
                 Users.Remove(User1);
-            }
         }
 
         public void editUser(User user)
         {
             User User1 = Users.Find(u => u.Id == user.Id);
-            if (User1 != null)
-            {
                 Users.Remove(User1);
                 Users.Add(user);
-            }
         }
 
         public List<User> findAllUsersByCP(string code_postal)
@@ -59,7 +49,7 @@ namespace TestUnitaire.Mock
         {
             DateTime filterDate = DateTime.Now;
             filterDate=filterDate.AddYears(-age);
-            List<User> dbUser = null;
+            List<User> dbUser = new List<User>();
             switch (filter)
             {
                 case ">=": // plus vieux que
@@ -69,7 +59,7 @@ namespace TestUnitaire.Mock
                     dbUser = Users.FindAll(u => u.DateNais.Year >= filterDate.Year);
                     break;
                 case "=": // age exact
-                    dbUser = Users.FindAll(u => u.DateNais.Year == filterDate.Year);
+                    dbUser = Users.FindAll(u => u.DateNais.Year == filterDate.Year && u.DateNais.Date>=filterDate.Date);
                     break;
             }
             return dbUser;
@@ -87,17 +77,13 @@ namespace TestUnitaire.Mock
 
         public List<User> findByGenre(char genVal)
         {
-            if (genVal == 'h')
+            if (genVal.ToString().ToLower() == "h")
             {
                 return Users.FindAll(u => u.UserGenre == User.Genre.Homme);
             }
-            else if (genVal == 'f')
+            else 
             {
                 return Users.FindAll(u => u.UserGenre == User.Genre.Femme);
-            }
-            else
-            {
-                return null;
             }
         }
 

@@ -19,7 +19,6 @@ namespace TestUnitaire.Mock
 
         public void createEvent(Event ev)
         {
-            Event ev1 = Events.Find(c => c.Id == ev.Id);
                 Events.Add(ev);
         }
 

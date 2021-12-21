@@ -9,18 +9,20 @@
         <div class="collapse navbar-collapse justify-content-between col-8" id="navbarSupportedContent">
             <ul class="navbar-nav  mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    @Html.ActionLink("Accueil","Index","Accueil", null,new { @class = "nav-link" })
+                    @Html.ActionLink("Accueil", "Index", "Accueil", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Qui sommes-nous ?", "Index", "About", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Evenements","Index","Events",null, new { @class="nav-link"})
+                    @Html.ActionLink("Evenements", "Index", "Events", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-
+                <li class="nav-item">
+                    @Html.ActionLink("Gestion utilisateurs", "Index", "Utilisateurs", null, new {@class="nav-link"})
+                </li>
             </ul>
             <form class="d-flex">
                 <div class="input-group">

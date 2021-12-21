@@ -20,7 +20,6 @@ namespace TestUnitaire.Mock
 
         public void createSousCategorie(SousCategorie souscategorie)
         {
-            SousCategorie newCat = SousCategories.Find(c => c.Id == souscategorie.Id);
             SousCategories.Add(souscategorie);
     }
 
