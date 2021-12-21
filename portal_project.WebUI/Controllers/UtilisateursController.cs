@@ -89,7 +89,7 @@ namespace portal_project.WebUI.Controllers
                 {
                     //Connexion a reussi
                     Session["User"] = new UserLogViewModel { Id = u.Id, IsAdmin = u.IsAdmin, FullName = u.Prenom + " " + u.Nom };
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Accueil");
                 }
             }
             else
@@ -97,6 +97,12 @@ namespace portal_project.WebUI.Controllers
                 ViewBag.ErrorLog = "Le pseudo ou le mot de passe ne sont pas renseignés";
                 return View();
             }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("User");
+            return RedirectToAction("Index","Accueil");
         }
     }
 }

@@ -48,14 +48,20 @@
             else
             {
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" 
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropDownMenuLink" role="button" 
                    data-bs-toggle="dropdown" aria-expanded="false">
                     @((Session["User"] as UserLogViewModel).FullName)
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-            <li class="nav-item">
-                @Html.ActionLink("Déconnexion", "Logout", "Utilisateurs", null, new { @class = "nav-link" })
-            </li>
+                <ul class="dropdown-menu bg-navbar" aria-labelledby="navbarDropDownMenuLink">
+                    <li class="">
+                        @Html.ActionLink("Mon compte", "ModifierCompte", "Utilisateurs", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="">
+                        @Html.ActionLink("Mes évènements", "ModifierCompte", "Events", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Déconnexion", "Logout", "Utilisateurs", null, new { @class = "nav-link" })
+                    </li>
                 </ul>
             </li>
             }
