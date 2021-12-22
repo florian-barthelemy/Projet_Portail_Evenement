@@ -13,12 +13,12 @@ namespace portal_project.WebUI.Controllers
     public class UtilisateursController : Controller
     {
         UserService userService;
-        // AdresseService adresseService;
+         AdresseService adresseService;
 
         public UtilisateursController()
         {
             userService = new UserService(new UserImpl());
-            // adresseService = new AdresseService(new AdresseImpl());
+            adresseService = new AdresseService(new AdresseImpl());
         }
 
         // GET: Utilisateur
@@ -58,6 +58,7 @@ namespace portal_project.WebUI.Controllers
                     {
                         User uSave = u.User;
                         uSave.MainAdresse = u.Adresse;
+                        adresseService.createAdress(uSave.MainAdresse);
                         userService.createUser(uSave);
                         return RedirectToAction("Index");
                     }
@@ -91,7 +92,9 @@ namespace portal_project.WebUI.Controllers
             }
             try
             {
-                User u = userService.findOneById(Convert.ToInt32(id));
+                User user = userService.findOneById(Convert.ToInt32(id));
+                Adresse adr = adresseService.findOneById(Convert.ToInt32(user.MainAdresseId));
+                UserAdresseViewModel u = new UserAdresseViewModel { User = user, Adresse= adr };
                 return View(u);
             }
             catch (Exception ex)
@@ -107,7 +110,8 @@ namespace portal_project.WebUI.Controllers
             try
             {
                 User user = userService.findOneById(id);
-                UserAdresseViewModel u = new UserAdresseViewModel { Adresse = user.MainAdresse, User = user };
+                Adresse adr = adresseService.findOneById(Convert.ToInt32(user.MainAdresseId));
+                UserAdresseViewModel u = new UserAdresseViewModel { Adresse = adr, User = user };
                 return View(u);
             }catch(Exception ex)
             {
@@ -125,9 +129,10 @@ namespace portal_project.WebUI.Controllers
                 {
                     try
                     {
-                        User user = userService.findOneById(id);
-                        
-                        userService.editUser(user);
+                        u.User.Id = id;
+                        u.User.MainAdresseId = u.Adresse.Id;
+                        adresseService.editAdress(u.Adresse);
+                        userService.editUser(u.User);
                         return RedirectToAction("Details", new { id = id });
                     }
                     catch (Exception ex)
@@ -145,6 +150,35 @@ namespace portal_project.WebUI.Controllers
             else
             {
                 return View(u);
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                User u = userService.findOneById(id);
+                return View(u);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+        [ActionName("Delete")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfimDelete(int id)
+        {
+            try
+            {
+                userService.deleteUser(id);
+                return RedirectToAction("Index","Accueil");
+            }catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
             }
         }
 
@@ -185,5 +219,6 @@ namespace portal_project.WebUI.Controllers
             Session.Remove("User");
             return RedirectToAction("Index","Accueil");
         }
+
     }
 }

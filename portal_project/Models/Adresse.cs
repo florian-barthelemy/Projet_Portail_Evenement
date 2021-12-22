@@ -27,7 +27,6 @@ namespace portal_project.Models
         [Required]
         [DataType(DataType.Text)]
         public string Ville { get; set; }
-        public virtual User User { get; set; }
 
         public Adresse()
         {
