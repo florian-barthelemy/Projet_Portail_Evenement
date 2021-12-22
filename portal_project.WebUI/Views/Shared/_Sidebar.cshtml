@@ -12,7 +12,7 @@
         @foreach (var item in Model)
         {
         <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed bg-navbar border border-dark" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            <button class="btn btn-toggle align-items-center rounded collapsed bg-navbar border border-dark link-cat-sidebar" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
                 @Html.DisplayFor(ModelItem => item.Categorie.Libelle)
             </button>
             <div class="collapse show" id="home-collapse">
@@ -20,7 +20,7 @@
                     @foreach (var sousCat in item.LstSousCategories)
                     {
                         @*<li><a href="#" class="link-dark rounded bg-navbar border border-dark">@Html.DisplayFor(ModelItem => sousCat.Libelle)</a></li>*@
-                       <li>@Html.ActionLink(sousCat.Libelle,"Index","Events",new { SousCategorie = sousCat.Libelle},null)</li>
+                       <li>@Html.ActionLink(sousCat.Libelle,"Index","Events",new { SousCategorie = sousCat.Libelle}, new { @class= "link-dark rounded bg-navbar border border-dark link-souscat-sidebar" })</li>
                     }
                     
                 </ul>

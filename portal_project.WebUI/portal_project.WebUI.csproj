@@ -203,6 +203,7 @@
     <Content Include="Views\Utilisateurs\Create.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Utilisateurs\Login.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Utilisateurs\Details.cshtml" />
     <Content Include="Views\Utilisateurs\Edit.cshtml" />
   </ItemGroup>

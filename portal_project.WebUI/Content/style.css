@@ -11,3 +11,10 @@ body{
 .stroke {
     -webkit-text-stroke: 0.5px #000000;
 }
+.link-cat-sidebar{
+    width:50%;
+}
+.link-souscat-sidebar{
+    width:45%;
+    justify-content:center;
+}

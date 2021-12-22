@@ -54,7 +54,7 @@ namespace portal_project.Dao
 
         public Adresse findOneById(int id)
         {
-            Adresse adr = context.Adresses.SingleOrDefault(ad => ad.Id == id);
+            Adresse adr = context.Adresses.AsNoTracking().SingleOrDefault(ad => ad.Id == id);
             return adr;
         }
 
