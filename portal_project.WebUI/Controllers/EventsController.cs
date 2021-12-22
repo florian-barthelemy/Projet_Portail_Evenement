@@ -152,6 +152,7 @@ namespace portal_project.WebUI.Controllers
             EventAdresseViewModel model = new EventAdresseViewModel();
             model.Event=evService.findOneById((int)id);
             model.Adresse = adresseService.findOneById((int)model.Event.EventAdresseId);
+            model.Photo = photoService.findOneById(model.Event.PhotosEvent[0].Id);
             ViewData["sousCats"] = souCatService.getAllSousCategories().ToList();
             if (model == null)
             {
@@ -163,12 +164,29 @@ namespace portal_project.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EventAdresseViewModel model, int id)
+        public ActionResult Edit(EventAdresseViewModel model, int id, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
+                
+                if (photo != null)
+                {
+                    
+                    model.Photo.PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
+                    string path = Server.MapPath("~/Images/" + model.Photo.PhotoTitle);
+                    model.Photo.PhotoLocation = path;
+                    model.Photo.PhotoDescription = "Photo de " + model.Event.Titre;
+                    model.Photo.DateUpload = DateTime.Now;
+                    photo.SaveAs(path);
+                }
+                else
+                {
+                    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
+                }
+                model.Event.PhotosEvent[0] = model.Photo;
                 model.Event.Id = id;
                 model.Event.EventAdresseId = model.Adresse.Id;
+                photoService.editPhoto(model.Photo);
                 adresseService.editAdress(model.Adresse);
                 evService.editEvent(model.Event);
 
@@ -177,6 +195,35 @@ namespace portal_project.WebUI.Controllers
             else
             {
                 return View("Index");
+            }
+        }
+        public ActionResult Delete(int id)
+        {
+            Event e = evService.findOneById(id);
+            if (e == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(int id)
+        {
+            Event eventToDelete = evService.findOneById(id);
+
+            if (eventToDelete == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                photoService.deletePhoto(eventToDelete.PhotosEvent[0].Id);
+                evService.deleteEvent(id);
+                return RedirectToAction("Index");
             }
         }
     }

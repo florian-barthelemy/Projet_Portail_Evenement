@@ -45,7 +45,7 @@ namespace portal_project.Dao
 
         public Photo findOneById(int id)
         {
-            return context.Photos.SingleOrDefault(dp => dp.Id == id);
+            return context.Photos.AsNoTracking().SingleOrDefault(dp => dp.Id == id);
         }
 
         public List<Photo> getAllPhotos()
