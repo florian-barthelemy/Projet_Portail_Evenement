@@ -39,7 +39,7 @@ namespace portal_project.Models
         [Required]
         [DataType(DataType.DateTime)]
         [Column(TypeName = "datetime2")]
-        public virtual DateTime DateNais { get; set; }
+        public DateTime DateNais { get; set; }
         public virtual List<Adresse> Adresses { get; set; }
         public virtual Adresse MainAdresse { get; set; }
 

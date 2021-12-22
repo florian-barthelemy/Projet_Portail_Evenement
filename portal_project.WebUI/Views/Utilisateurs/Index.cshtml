@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<portal_project.Models.User>
 
+@if (ViewBag.Error != null) {
+    <h3 class="text-danger">@ViewBag.Error</h3>
+        }
+    
 <p>
     @Html.ActionLink("Créer nouvel utilisateur", "Create")
 </p>
@@ -55,3 +59,4 @@
 }
 
 </table>
+
