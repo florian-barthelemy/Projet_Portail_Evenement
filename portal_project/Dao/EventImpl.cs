@@ -72,7 +72,7 @@ namespace portal_project.Dao
 
         public Event findOneById(int id)
         {
-            return context.Events.SingleOrDefault(e => e.Id == id);
+            return context.Events.AsNoTracking().SingleOrDefault(e => e.Id == id);
         }
 
         public List<Event> getAllEvents()

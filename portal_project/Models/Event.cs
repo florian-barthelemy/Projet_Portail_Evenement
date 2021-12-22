@@ -18,7 +18,9 @@ namespace portal_project.Models
         public string Titre { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        public virtual Adresse EventAdresse { get; set; }
+        [ForeignKey("EventAdresseId")]
+        public  Adresse EventAdresse { get; set; }
+        public int? EventAdresseId { get; set; }
         [DataType(DataType.DateTime)]
         [Column(TypeName = "datetime2")]
         public virtual DateTime DateDebut { get; set; }

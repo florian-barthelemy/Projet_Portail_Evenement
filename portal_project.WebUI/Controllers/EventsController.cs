@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
@@ -131,6 +132,7 @@ namespace portal_project.WebUI.Controllers
                 }
 
                 adresseService.createAdress(ev.EventAdresse);
+                
                 evService.createEvent(ev);
 
                 return RedirectToAction("Index");
@@ -138,6 +140,42 @@ namespace portal_project.WebUI.Controllers
             else
             {
 
+                return View("Index");
+            }
+        }
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EventAdresseViewModel model = new EventAdresseViewModel();
+            model.Event=evService.findOneById((int)id);
+            model.Adresse = adresseService.findOneById((int)model.Event.EventAdresseId);
+            ViewData["sousCats"] = souCatService.getAllSousCategories().ToList();
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+            
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EventAdresseViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Event.Id = id;
+                model.Event.EventAdresseId = model.Adresse.Id;
+                adresseService.editAdress(model.Adresse);
+                evService.editEvent(model.Event);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 return View("Index");
             }
         }
