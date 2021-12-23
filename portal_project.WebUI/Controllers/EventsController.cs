@@ -122,8 +122,8 @@ namespace portal_project.WebUI.Controllers
                     string path = Server.MapPath("~/Images/" + fileName);  //Personaliser le nom de la photo
                     ev.PhotosEvent = new List<Photo>();
                     ev.PhotosEvent.Add(new Photo {PhotoLocation= path, PhotoTitle = fileName,PhotoDescription= "Photo de " + ev.Titre, PhotoEvent = ev, DateUpload= DateTime.Now });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
-                     // /Content/Photos/user1.jpg
-                    
+                                                                                                                                                                                           // /Content/Photos/user1.jpg
+
                     photo.SaveAs(path);
                 }
                 else
@@ -132,7 +132,7 @@ namespace portal_project.WebUI.Controllers
                 }
 
                 adresseService.createAdress(ev.EventAdresse);
-                
+
                 evService.createEvent(ev);
 
                 return RedirectToAction("Index");
@@ -159,8 +159,8 @@ namespace portal_project.WebUI.Controllers
                 return HttpNotFound();
             }
             return View(model);
-            
-            
+
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -168,10 +168,10 @@ namespace portal_project.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 if (photo != null)
                 {
-                    
+
                     model.Photo.PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
                     string path = Server.MapPath("~/Images/" + model.Photo.PhotoTitle);
                     model.Photo.PhotoLocation = path;
