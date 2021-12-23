@@ -12,12 +12,14 @@ namespace portal_project.WebUI
             bundles.Add(new ScriptBundle("~/Scripts/js/").Include(
                       "~/Scripts/js/bootstrap.js",
                       "~/Scripts/js/bootstrap.bundle.js",
+                      
                       "~/Scripts/js/sidebars.js"));
+                       
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/sidebars.css",
-                      "~/Content/style.css",
+                      
                       "~/Content/features.css"));
         }
     }
