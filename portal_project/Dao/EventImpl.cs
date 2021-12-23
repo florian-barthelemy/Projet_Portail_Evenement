@@ -77,7 +77,7 @@ namespace portal_project.Dao
 
         public List<Event> getAllEvents()
         {
-            return context.Events.ToList();
+            return context.Events.AsNoTracking().ToList();
         }
     }
 }

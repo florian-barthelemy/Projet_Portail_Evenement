@@ -18,7 +18,7 @@ $(document).ready(function () {
     $('#EventAdresse_Voie').keyup(function (e) {
         e.preventDefault();
         let adrLength = $(this).val().length;
-        if (adrLength > 10) {
+        if (adrLength > 1) {
             let dataVal = $(this).val();
             let url = "https://api-adresse.data.gouv.fr/search/?q=" + dataVal;
 
@@ -46,10 +46,12 @@ $(document).ready(function () {
                             let cp = data.features[0].properties.postcode;
                             map.setView([lati, longi], 18);
                             L.marker([lati, longi]).addTo(map); //ajout marker
-
+                            //longi = longi.replace(".", ",");
+                            //lati = lati.replace(".", ",");
                             //insertion valeur Axe_X et Axe_y
-                            $('#EventAdresse_Axe_X').val(longi);
-                            $('#EventAdresse_Axe_Y').val(lati);
+
+                            $('#EventAdresse_Axe_X').val(parseFloat(longi));
+                            $('#EventAdresse_Axe_Y').val(parseFloat(lati));
 
                             //insertion Ville
                             $('#EventAdresse_Ville').val(ville);
