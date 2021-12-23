@@ -9,26 +9,27 @@ using System.Threading.Tasks;
 
 namespace portal_project.Dao
 {
-   public class UserImpl : IUser
+    public class UserImpl : IUser
     {
         MyContext context = new MyContext();
         public void createUser(User user)
         {
-                context.Users.Add(user);
-                context.SaveChanges();
+            context.Users.Add(user);
+            context.SaveChanges();
         }
 
         public void deleteUser(int id_user)
         {
             User dbUser = context.Users.SingleOrDefault(u => u.Id == id_user);
-                context.Users.Remove(dbUser);
+            context.Users.Remove(dbUser);
+            context.SaveChanges();
         }
 
         public void editUser(User user)
         {
-                context.Users.Attach(user);
-                context.Entry(user).State = EntityState.Modified;
-                context.SaveChanges();
+            context.Users.Attach(user);
+            context.Entry(user).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public List<User> findAllUsersByCP(string code_postal)
@@ -48,7 +49,7 @@ namespace portal_project.Dao
         {
             DateTime filterDate = DateTime.Now;
             filterDate.AddYears(-age);
-            List<User> dbUser= new List<User>();
+            List<User> dbUser = new List<User>();
             switch (filter)
             {
                 case ">=": // plus vieux que
@@ -58,8 +59,8 @@ namespace portal_project.Dao
                     dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year >= filterDate.Year).ToList();
                     break;
                 case "=": // age exact
-                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year == filterDate.Year 
-                    && u.DateNais.Date>=filterDate.Date).ToList();
+                    dbUser = context.Users.AsNoTracking().Where(u => u.DateNais.Year == filterDate.Year
+                    && u.DateNais.Date >= filterDate.Date).ToList();
                     break;
             }
             return dbUser;
@@ -77,7 +78,7 @@ namespace portal_project.Dao
 
         public List<User> findByGenre(char genVal) //'h' ou 'f'
         {
-            if(genVal.ToString().ToLower() == "h")
+            if (genVal.ToString().ToLower() == "h")
             {
                 return context.Users.AsNoTracking().Where(u => u.UserGenre == User.Genre.Homme).ToList();
             }
@@ -95,7 +96,7 @@ namespace portal_project.Dao
 
         public User findOneById(int id)
         {
-            return context.Users.SingleOrDefault(u => u.Id == id);
+            return context.Users.AsNoTracking().SingleOrDefault(u => u.Id == id);
         }
 
         public List<User> getAllAdmins()

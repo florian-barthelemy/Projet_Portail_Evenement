@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<portal_project.Models.User>
 
+@if (ViewBag.Error != null) {
+    <h3 class="text-danger">@ViewBag.Error</h3>
+        }
+    
 <p>
     @Html.ActionLink("Créer nouvel utilisateur", "Create")
 </p>
@@ -13,9 +17,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsAdmin)
@@ -38,9 +39,6 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsAdmin)
         </td>
         <td>
@@ -55,3 +53,4 @@
 }
 
 </table>
+

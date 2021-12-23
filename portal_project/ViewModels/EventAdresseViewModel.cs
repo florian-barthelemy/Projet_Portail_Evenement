@@ -11,5 +11,6 @@ namespace portal_project.ViewModels
     {
         public Event Event { get; set; }
         public Adresse Adresse { get; set; }
+        public List<Photo> Photos { get; set; }
     }
 }

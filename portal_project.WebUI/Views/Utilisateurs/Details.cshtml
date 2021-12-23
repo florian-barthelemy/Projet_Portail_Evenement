@@ -1,0 +1,82 @@
+﻿@model portal_project.ViewModels.UserAdresseViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Détails du compte</h2>
+@if (ViewBag.Error != null)
+{
+    <h3 class="text-danger">@ViewBag.Error</h3>
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.User.Nom)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.User.Nom)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.User.Prenom)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.User.Prenom)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.User.DateNais)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.User.DateNais)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.Adresse.Voie)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.Adresse.Voie)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.Adresse.Ville)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.Adresse.Ville)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.Adresse.CodePostal)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.Adresse.CodePostal)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.DisplayNameFor(Model => Model.User.Email)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(Model => Model.User.Email)
+        </div>
+    </div>
+
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.User.Id })
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                @Html.ActionLink("Supprimer le compte", "Delete", new { id = Model.User.Id })
+            </div>
+        </div>
+    }
+</div>

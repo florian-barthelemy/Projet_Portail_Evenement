@@ -113,6 +113,10 @@
     <Compile Include="Migrations\202112221047289_FixEventAdresse.designer.cs">
       <DependentUpon>202112221047289_FixEventAdresse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112221355403_FixUserAdresse.cs" />
+    <Compile Include="Migrations\202112221355403_FixUserAdresse.designer.cs">
+      <DependentUpon>202112221355403_FixUserAdresse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -239,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112221047289_FixEventAdresse.resx">
       <DependentUpon>202112221047289_FixEventAdresse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112221355403_FixUserAdresse.resx">
+      <DependentUpon>202112221355403_FixUserAdresse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
