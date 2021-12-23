@@ -2,8 +2,16 @@
 
 @{
     ViewBag.Title = "Create";
+    <link href="~/Scripts/leaflet/leaflet.css" rel="stylesheet" />
+
 }
 
+@section Scripts{
+    <script src="~/Scripts/Jquery-3.6.0.js"></script>
+    <script src="~/Scripts/leaflet/leaflet.js"></script>
+    <script src="~/Scripts/map/map.js"></script>
+    <script src="~/Scripts/map/mapCreateEditEvent.js"></script>
+}
 <div class="row col-12">
     @using (Html.BeginForm("Create", "Events", FormMethod.Post, new { enctype = "multipart/form-data", @class = "col-xl-6" }))
     {
@@ -11,7 +19,7 @@
         <div class="container">
 
             <div class="form-horizontal w-100 mx-auto bg-navbar rounded-4 m-2">
-                
+
                 <h2 class="text-center">Créer un évenement</h2>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group mb-3">
@@ -61,62 +69,67 @@
                         @Html.ValidationMessageFor(model => model.MinAge, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group mb-3">
-
                     <div class="col-md-10 mx-auto">
-                        @Html.EditorFor(model => model.EventAdresse.Voie, new { htmlAttributes = new { @class = "form-control", placeholder = "Voie/Rue", list = "listAdresses" } })
-                        @Html.ValidationMessageFor(model => model.EventAdresse.Voie, "", new { @class = "text-danger" })
+                        <input type="text" class="form-control" id="searchAdresse" placeholder="Rechercher mon Adresse" autocomplete="false" list="listAdresses" />
                         <datalist id="listAdresses">
                         </datalist>
                     </div>
-                </div>
-                <div class="d-none">
-                    @Html.EditorFor(model => model.EventAdresse.Axe_X, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe X", @type = "number", @min = "0", @step = "0.000001", @value = "0" } })
-                    @Html.ValidationMessageFor(model => model.EventAdresse.Axe_X, "", new { @class = "text-danger" })
-
-                    @Html.EditorFor(model => model.EventAdresse.Axe_Y, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe Y", @type = "number", @min = "0", @step = "0.000001", @value = "0" } })
-                    @Html.ValidationMessageFor(model => model.EventAdresse.Axe_Y, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group mb-3">
-
-                    <div class="col-md-10 mx-auto">
-                        @Html.EditorFor(model => model.EventAdresse.Ville, new { htmlAttributes = new { @class = "form-control", placeholder = "Ville" } })
-                        @Html.ValidationMessageFor(model => model.EventAdresse.Ville, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group mb-3">
+                    <div class="form-group mb-3">
+                        
+                        <div class="col-md-10 mx-auto">
+                            @Html.EditorFor(model => model.EventAdresse.Voie, new { htmlAttributes = new { @class = "form-control", placeholder = "Voie/Rue", autocomplete = "false", @readonly="readonly" } })
+                            @Html.ValidationMessageFor(model => model.EventAdresse.Voie, "", new { @class = "text-danger" })
 
-                    <div class="col-md-10 mx-auto">
-                        @Html.EditorFor(model => model.EventAdresse.CodePostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Code Postal" } })
-                        @Html.ValidationMessageFor(model => model.EventAdresse.CodePostal, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group mb-3">
-                    <div class="col-md-10 mx-auto">
-                        @Html.LabelFor(model => model.EventSousCat, htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
-                        <br />
-                        @Html.DropDownListFor(model => model.EventSousCatId, new SelectList((IEnumerable<portal_project.Models.SousCategorie>)ViewData["sousCats"], "Id", "Libelle"), new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EventSousCat, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <div class="col-md-10 mx-auto">
-                        @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
-                        <br />
-                        <input type="file" name="photo" class="form-control" value="" />
-                        @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                    <div class="d-none">
+                        @Html.EditorFor(model => model.EventAdresse.Axe_X, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe X", @type = "number", @min = "0", @step = "0.000001", @value = "0", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.EventAdresse.Axe_X, "", new { @class = "text-danger" })
 
-                <div class="form-group justify-content-center mb-3">
-                    <div class="col-md-offset-2 col-md-10 mx-auto">
-                        <input type="submit" value="Créer" class="btn rounded-pill border border-dark bg-navbar" />
+                        @Html.EditorFor(model => model.EventAdresse.Axe_Y, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe Y", @type = "number", @min = "0", @step = "0.000001", @value = "0", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.EventAdresse.Axe_Y, "", new { @class = "text-danger" })
                     </div>
+                    <div class="form-group mb-3">
+
+                        <div class="col-md-10 mx-auto">
+                            @Html.EditorFor(model => model.EventAdresse.Ville, new { htmlAttributes = new { @class = "form-control", placeholder = "Ville", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.EventAdresse.Ville, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <div class="col-md-10 mx-auto">
+                            @Html.EditorFor(model => model.EventAdresse.CodePostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Code Postal", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.EventAdresse.CodePostal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="col-md-10 mx-auto">
+                            @Html.LabelFor(model => model.EventSousCat, htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
+                            <br />
+                            @Html.DropDownListFor(model => model.EventSousCatId, new SelectList((IEnumerable<portal_project.Models.SousCategorie>)ViewData["sousCats"], "Id", "Libelle"), new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EventSousCat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="col-md-10 mx-auto">
+                            @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
+                            <br />
+                            <input type="file" name="photo" class="form-control" value="" />
+                            @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group justify-content-center mb-3">
+                        <div class="col-md-offset-2 col-md-10 mx-auto">
+                            <input type="submit" value="Créer" class="btn rounded-pill border border-dark bg-navbar" />
+                        </div>
+                    </div>
+
+
                 </div>
-
-
-            </div>
 
         </div>
 
