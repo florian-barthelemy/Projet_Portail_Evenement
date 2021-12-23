@@ -2,6 +2,7 @@
 $(document).ready(function () {
     var map = createMap();
     if ($("#map").length) {
+        $("#map").css('min-height', '500px');
         $('#searchAdresse').keyup(function (e) {
             e.preventDefault();
             let adrLength = $(this).val().length;

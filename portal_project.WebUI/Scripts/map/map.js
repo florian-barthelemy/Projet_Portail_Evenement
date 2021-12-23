@@ -5,7 +5,7 @@ function createMap()
 
 
         var map = L.map('map').setView([50.636565, 3.063528], 13);
-        $("#map").css('min-height', '500px');
+        
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
