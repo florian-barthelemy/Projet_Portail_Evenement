@@ -109,7 +109,7 @@ namespace portal_project.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "EventAdresse.Axe_X")]Event ev, HttpPostedFileBase photo)
+        public ActionResult Create(Event ev, HttpPostedFileBase photo)
         {
 
             if (ModelState.IsValid)

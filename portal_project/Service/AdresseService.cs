@@ -27,7 +27,7 @@ namespace portal_project.Service
             }
             else
             {
-                throw new AlreadyCreatedException("L'adresse que vous essayer de créer existe déjà");
+                //throw new AlreadyCreatedException("L'adresse que vous essayer de créer existe déjà");
             }
         }
 

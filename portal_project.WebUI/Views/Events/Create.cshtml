@@ -11,8 +11,7 @@
         <div class="container">
 
             <div class="form-horizontal w-100 mx-auto bg-navbar rounded-4 m-2">
-                @Html.HiddenFor(model => model.EventAdresse.Axe_X)
-                @Html.HiddenFor(model => model.EventAdresse.Axe_Y)
+                
                 <h2 class="text-center">Créer un évenement</h2>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group mb-3">
@@ -73,10 +72,10 @@
                     </div>
                 </div>
                 <div class="d-none">
-                    @Html.EditorFor(model => model.EventAdresse.Axe_X, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe X" } })
+                    @Html.EditorFor(model => model.EventAdresse.Axe_X, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe X", @type = "number", @min = "0", @step = "0.000001", @value = "0" } })
                     @Html.ValidationMessageFor(model => model.EventAdresse.Axe_X, "", new { @class = "text-danger" })
 
-                    @Html.EditorFor(model => model.EventAdresse.Axe_Y, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe Y" } })
+                    @Html.EditorFor(model => model.EventAdresse.Axe_Y, new { htmlAttributes = new { @class = "form-control", placeholder = "Axe Y", @type = "number", @min = "0", @step = "0.000001", @value = "0" } })
                     @Html.ValidationMessageFor(model => model.EventAdresse.Axe_Y, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group mb-3">

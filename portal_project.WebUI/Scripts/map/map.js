@@ -46,10 +46,12 @@ $(document).ready(function () {
                             let cp = data.features[0].properties.postcode;
                             map.setView([lati, longi], 18);
                             L.marker([lati, longi]).addTo(map); //ajout marker
-
+                            //longi = longi.replace(".", ",");
+                            //lati = lati.replace(".", ",");
                             //insertion valeur Axe_X et Axe_y
-                            $('#EventAdresse_Axe_X').val(longi);
-                            $('#EventAdresse_Axe_Y').val(lati);
+
+                            $('#EventAdresse_Axe_X').val(parseFloat(longi));
+                            $('#EventAdresse_Axe_Y').val(parseFloat(lati));
 
                             //insertion Ville
                             $('#EventAdresse_Ville').val(ville);
