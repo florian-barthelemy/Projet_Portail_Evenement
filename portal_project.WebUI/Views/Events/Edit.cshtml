@@ -9,118 +9,120 @@
 @using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="container">
 
-    <div class="form-horizontal w-50 mx-auto bg-navbar rounded-4 m-2">
-        <h2 class="text-center">Créer un évenement</h2>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
 
-        @Html.HiddenFor(model => Model.Adresse.Id)
-        <div class="form-group mb-3">
+        <div class="form-horizontal w-50 mx-auto bg-navbar rounded-4 m-2">
+            <h2 class="text-center">Créer un évenement</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.Titre, new { htmlAttributes = new { @class = "form-control", placeholder = "Titre" } })
-                @Html.ValidationMessageFor(model => model.Event.Titre, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => Model.Adresse.Id)
+            @Html.HiddenFor(model => Model.Event.Id)
+
+            <div class="form-group mb-3">
+
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.Titre, new { htmlAttributes = new { @class = "form-control", placeholder = "Titre" } })
+                    @Html.ValidationMessageFor(model => model.Event.Titre, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
-                @Html.ValidationMessageFor(model => model.Event.Description, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
+                    @Html.ValidationMessageFor(model => model.Event.Description, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.DateDebut, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de début" } })
-                @Html.ValidationMessageFor(model => model.Event.DateDebut, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.DateDebut, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de début" } })
+                    @Html.ValidationMessageFor(model => model.Event.DateDebut, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.DateFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de fin" } })
-                @Html.ValidationMessageFor(model => model.Event.DateFin, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.DateFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de fin" } })
+                    @Html.ValidationMessageFor(model => model.Event.DateFin, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.Tarif, new { htmlAttributes = new { @class = "form-control", placeholder = "Tarif" } })
-                @Html.ValidationMessageFor(model => model.Event.Tarif, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.Tarif, new { htmlAttributes = new { @class = "form-control", placeholder = "Tarif" } })
+                    @Html.ValidationMessageFor(model => model.Event.Tarif, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Event.MinAge, new { htmlAttributes = new { @class = "form-control", placeholder = "Âge minimum" } })
-                @Html.ValidationMessageFor(model => model.Event.MinAge, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Event.MinAge, new { htmlAttributes = new { @class = "form-control", placeholder = "Âge minimum" } })
+                    @Html.ValidationMessageFor(model => model.Event.MinAge, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Adresse.Voie, new { htmlAttributes = new { @class = "form-control", placeholder = "Voie/Rue" } })
-                @Html.ValidationMessageFor(model => model.Adresse.Voie, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Adresse.Voie, new { htmlAttributes = new { @class = "form-control", placeholder = "Voie/Rue" } })
+                    @Html.ValidationMessageFor(model => model.Adresse.Voie, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Adresse.Ville, new { htmlAttributes = new { @class = "form-control", placeholder = "Ville" } })
-                @Html.ValidationMessageFor(model => model.Adresse.Ville, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Adresse.Ville, new { htmlAttributes = new { @class = "form-control", placeholder = "Ville" } })
+                    @Html.ValidationMessageFor(model => model.Adresse.Ville, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group mb-3">
+            <div class="form-group mb-3">
 
-            <div class="col-md-10 mx-auto">
-                @Html.EditorFor(model => model.Adresse.CodePostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Code Postal" } })
-                @Html.ValidationMessageFor(model => model.Adresse.CodePostal, "", new { @class = "text-danger" })
+                <div class="col-md-10 mx-auto">
+                    @Html.EditorFor(model => model.Adresse.CodePostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Code Postal" } })
+                    @Html.ValidationMessageFor(model => model.Adresse.CodePostal, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group mb-3">
-            <div class="col-md-10 mx-auto">
-                @Html.LabelFor(model => model.Event.EventSousCat, htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
-                <br />
-                @Html.DropDownListFor(model => model.Event.EventSousCatId, new SelectList((IEnumerable<portal_project.Models.SousCategorie>)ViewData["sousCats"], "Id", "Libelle"), new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Event.EventSousCat, "", new { @class = "text-danger" })
+            <div class="form-group mb-3">
+                <div class="col-md-10 mx-auto">
+                    @Html.LabelFor(model => model.Event.EventSousCat, htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
+                    <br />
+                    @Html.DropDownListFor(model => model.Event.EventSousCatId, new SelectList((IEnumerable<portal_project.Models.SousCategorie>)ViewData["sousCats"], "Id", "Libelle"), new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Event.EventSousCat, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        @*<img src="@Model.Photo.PhotoLocation" />
-        <div class="form-group mb-3">
-            <div class="col-md-10 mx-auto">
-                @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
-                <br />
-                <input type="file" name="photo" class="form-control" value="@Model.Photo.PhotoTitle" />
-                @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
+            @*<img src="@Model.Photo.PhotoLocation" />
+                <div class="form-group mb-3">
+                    <div class="col-md-10 mx-auto">
+                        @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
+                        <br />
+                        <input type="file" name="photo" class="form-control" value="@Model.Photo.PhotoTitle" />
+                        @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <div class="col-md-10">
+                    <img src="~/Images/@Model.Event.PhotosEvent[0].PhotoTitle" class="img-responsive" alt="Alternate Text" style="height: 150px" />
+                    @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
+                    <br />
+                    <input type="file" name="photo" class="form-control" value="" />
+                    @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>*@
-        <div class="form-group">
-            <div class="col-md-10">
-                <img src="~/Images/@Model.Photo.PhotoTitle" class="img-responsive" alt="Alternate Text" style="height: 150px" />
-                @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2 mx-auto" })
-                <br />
-                <input type="file" name="photo" class="form-control" value="" />
-                @Html.ValidationMessage("Photo", "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group justify-content-center mb-3">
-            <div class="col-md-offset-2 col-md-10 mx-auto">
-                <input type="submit" value="Modifier" class="btn rounded-pill border border-dark bg-navbar" />
+            <div class="form-group justify-content-center mb-3">
+                <div class="col-md-offset-2 col-md-10 mx-auto">
+                    <input type="submit" value="Modifier" class="btn rounded-pill border border-dark bg-navbar" />
+                </div>
             </div>
         </div>
     </div>
-    </div>
-    }
+}
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

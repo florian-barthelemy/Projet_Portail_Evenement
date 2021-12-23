@@ -11,6 +11,8 @@
         <div class="container">
 
             <div class="form-horizontal w-100 mx-auto bg-navbar rounded-4 m-2">
+                @Html.HiddenFor(model => model.EventAdresse.Axe_X)
+                @Html.HiddenFor(model => model.EventAdresse.Axe_Y)
                 <h2 class="text-center">Créer un évenement</h2>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group mb-3">
@@ -67,7 +69,6 @@
                         @Html.EditorFor(model => model.EventAdresse.Voie, new { htmlAttributes = new { @class = "form-control", placeholder = "Voie/Rue", list = "listAdresses" } })
                         @Html.ValidationMessageFor(model => model.EventAdresse.Voie, "", new { @class = "text-danger" })
                         <datalist id="listAdresses">
-                            
                         </datalist>
                     </div>
                 </div>

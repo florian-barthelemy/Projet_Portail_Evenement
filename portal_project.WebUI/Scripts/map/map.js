@@ -18,7 +18,7 @@ $(document).ready(function () {
     $('#EventAdresse_Voie').keyup(function (e) {
         e.preventDefault();
         let adrLength = $(this).val().length;
-        if (adrLength > 10) {
+        if (adrLength > 1) {
             let dataVal = $(this).val();
             let url = "https://api-adresse.data.gouv.fr/search/?q=" + dataVal;
 
