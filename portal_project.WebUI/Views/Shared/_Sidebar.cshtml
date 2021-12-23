@@ -1,32 +1,36 @@
 ﻿@model IEnumerable<portal_project.ViewModels.EventViewModel>
 <div class="p-3 ">
-    <form class="d-flex mb-1 col-6">
-        <div class="input-group fw-normal pb-1 small">
-            <input type="text" class="form-control bg-light" placeholder="Rechercher" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary bg-light border-0" type="submit" id="button-addon2">
-                <i class="bi bi-search"></i>
-            </button>
+
+    @using (Html.BeginForm("Index", "Events", FormMethod.Get))
+    {<div class="d-flex mb-1 col-6">
+            <div class="input-group fw-normal pb-1 small">
+                <input type="text" name="searchField" placeholder="Titre" class="form-control bg-light" placeholder="Rechercher" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary bg-light border-0" type="submit" id="button-addon2">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
         </div>
-    </form>
+    }
+
     <ul class="list-unstyled ps-0">
         @foreach (var item in Model)
         {
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed bg-navbar border border-dark link-cat-sidebar" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                @Html.DisplayFor(ModelItem => item.Categorie.Libelle)
-            </button>
-            <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    @foreach (var sousCat in item.LstSousCategories)
-                    {
-                        @*<li><a href="#" class="link-dark rounded bg-navbar border border-dark">@Html.DisplayFor(ModelItem => sousCat.Libelle)</a></li>*@
-                       <li>@Html.ActionLink(sousCat.Libelle,"Index","Events",new { SousCategorie = sousCat.Libelle}, new { @class= "link-dark rounded bg-navbar border border-dark link-souscat-sidebar" })</li>
-                    }
-                    
-                </ul>
-            </div>
-        </li>
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed bg-navbar border border-dark link-cat-sidebar" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                    @Html.DisplayFor(ModelItem => item.Categorie.Libelle)
+                </button>
+                <div class="collapse show" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        @foreach (var sousCat in item.LstSousCategories)
+                        {
+                            @*<li><a href="#" class="link-dark rounded bg-navbar border border-dark">@Html.DisplayFor(ModelItem => sousCat.Libelle)</a></li>*@
+                            <li>@Html.ActionLink(sousCat.Libelle, "Index", "Events", new { SousCategorie = sousCat.Libelle  }, new { @class = "link-dark rounded bg-navbar border border-dark link-souscat-sidebar" })</li>
+                        }
+
+                    </ul>
+                </div>
+            </li>
         }
-        
+
     </ul>
 </div>

@@ -40,7 +40,7 @@ namespace portal_project.WebUI.Controllers
             adresseService = new AdresseService(adresseDao);
         }
         // GET: Events
-        public ActionResult Index(string SousCategorie = null)
+        public ActionResult Index(string SousCategorie = null, string searchField = null)
         {
 
             List<EventViewModel> vm = new List<EventViewModel>();
@@ -82,6 +82,14 @@ namespace portal_project.WebUI.Controllers
 
             ViewData["events"] = events;
 
+            if (String.IsNullOrEmpty(searchField))
+            {
+                ViewData["events"] = events;
+            }
+            else
+            {
+                ViewData["events"] = events.Where(e => e.Titre.ToLower().Contains(searchField.ToLower()));
+            }
             return View(vm);
         }
         public ActionResult Details(int id)
