@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Accueil";
     <link href="~/Scripts/leaflet/leaflet.css" rel="stylesheet" />
+    <link href="~/Scripts/map/marker-cluster/dist/MarkerCluster.css" rel="stylesheet" />
+    <link href="~/Scripts/map/marker-cluster/dist/MarkerCluster.Default.css" rel="stylesheet" />
 
 }
 
@@ -9,8 +11,10 @@
 @section Scripts{
     <script src="~/Scripts/Jquery-3.6.0.js"></script>
     <script src="~/Scripts/leaflet/leaflet.js"></script>
+    <script src="~/Scripts/map/marker-cluster/dist/leaflet.markercluster.js"></script>
     <script src="~/Scripts/map/map.js"></script>
     <script src="~/Scripts/map/mapIndex.js"></script>
+
 }
 <div class="d-inline-flex flex-column align-items-center col-12">
     <img class="" src="~/Content/images/logo.png" alt="Alternate Text" />
@@ -47,13 +51,16 @@
 
 
         <div class="d-none">
-
+            @foreach (var item in (IEnumerable<portal_project.Models.Event>)ViewData["events"])
+            {
+                <div class="event-map-pt" data-longiX="@item.EventAdresse.Axe_X" data-latiY="@item.EventAdresse.Axe_Y" data-libelle="@item.Titre"></div>
+            }
         </div>
 
     </div>
 
-    
-    
+
+
 </div>
 
 

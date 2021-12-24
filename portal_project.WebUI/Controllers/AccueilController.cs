@@ -43,11 +43,11 @@ namespace portal_project.WebUI.Controllers
             List<EventViewModel> vm = new List<EventViewModel>();
 
             List<Event> events = new List<Event>();
-
-            foreach (Event ev in evService.getAllEvents())
+            events = evService.getAllEvents();
+            vm.Add(new EventViewModel { LstEvents = events });
+            foreach (Event e in events)
             {
-
-                events.Add(ev);
+                e.EventAdresse = adresseService.findOneById((int)e.EventAdresseId);
             }
             ViewData["events"] = events;
 
