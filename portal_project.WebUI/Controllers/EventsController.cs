@@ -198,7 +198,7 @@ namespace portal_project.WebUI.Controllers
                 //{
                 //    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
                 //}
-                
+
                 model.Event.Id = id;
                 model.Event.EventAdresseId = model.Adresse.Id;
 
