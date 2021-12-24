@@ -14,22 +14,23 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createPhoto(Photo p)
         {
-                context.Photos.Add(p);
-                context.SaveChanges();
+            context.Photos.Add(p);
+            context.SaveChanges();
         }
 
         public void deletePhoto(int id_photo)
         {
             Photo dbPhoto = context.Photos.SingleOrDefault(dp => dp.Id == id_photo);
-                context.Photos.Remove(dbPhoto);
-                context.SaveChanges();
+            context.Photos.Remove(dbPhoto);
+            context.SaveChanges();
         }
 
         public void editPhoto(Photo p)
         {
-                context.Photos.Attach(p);
-                context.Entry(p).State = EntityState.Modified;
-                context.SaveChanges();
+
+            context.Photos.Attach(p);
+            context.Entry(p).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
 
@@ -50,7 +51,7 @@ namespace portal_project.Dao
 
         public List<Photo> getAllPhotos()
         {
-            return context.Photos.ToList();
+            return context.Photos.AsNoTracking().ToList();
         }
 
         public List<Photo> getAllUserPhoto(User u)

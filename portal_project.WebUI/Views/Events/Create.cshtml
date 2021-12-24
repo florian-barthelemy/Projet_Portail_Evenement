@@ -41,7 +41,8 @@
                 <div class="form-group mb-3">
 
                     <div class="col-md-10 mx-auto">
-                        @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de début" } })
+                        
+                        @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de début (YYYY/MM/DD)" } })
                         @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -49,7 +50,7 @@
                 <div class="form-group mb-3">
 
                     <div class="col-md-10 mx-auto">
-                        @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de fin" } })
+                        @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Date de fin (YYYY / MM / DD)" } })
                         @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
                     </div>
                 </div>

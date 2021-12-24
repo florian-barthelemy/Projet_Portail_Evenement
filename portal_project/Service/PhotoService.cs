@@ -124,7 +124,7 @@ namespace portal_project.Service
 
         public List<Photo> getAllEventPhoto(Event e)
         {
-            List<Photo> photos = dao.getAllPhotos().Where(p => p.PhotoEvent.Id == e.Id).ToList();
+            List<Photo> photos = dao.getAllPhotos().Where(p => p.PhotoEventId == e.Id).ToList();
             if (photos.Count > 0)
             {
                 return photos;

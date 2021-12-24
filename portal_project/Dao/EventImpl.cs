@@ -14,24 +14,27 @@ namespace portal_project.Dao
         MyContext context = new MyContext();
         public void createEvent(Event ev)
         {
-                context.Events.Add(ev);
-                context.SaveChanges();
+            context.Events.Add(ev);
+            context.SaveChanges();
         }
 
         public void deleteEvent(int id_event)
         {
             Event dbEvent = context.Events.SingleOrDefault(e => e.Id == id_event);
-                context.Events.Remove(dbEvent);
-                context.SaveChanges();
+            context.Events.Remove(dbEvent);
+            context.SaveChanges();
         }
 
         public void editEvent(Event ev)
         {
+            
                 context.Events.Attach(ev);
                 context.Entry(ev).State = EntityState.Modified;
                 context.SaveChanges();
+            
         }
-         
+
+
         public List<Event> findAllEventsByCategorie(string titre)
         {
             return context.Events.AsNoTracking().Where(evnt => evnt.EventSousCat.EventCategorie.Libelle.Equals(titre)).ToList();
