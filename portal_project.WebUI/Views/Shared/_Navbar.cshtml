@@ -42,7 +42,7 @@
                         @Html.ActionLink("Connexion","Login","Utilisateurs",null, new { @class = "nav-link"})
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inscription</a>
+                        @Html.ActionLink("Inscription", "Create", "Utilisateurs", null, new { @class = "nav-link" })
                     </li>
                 }
             else
@@ -61,6 +61,9 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Déconnexion", "Logout", "Utilisateurs", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Créer", "Create", "Events", null, new { @class = "nav-link" })
                     </li>
                 </ul>
             </li>
