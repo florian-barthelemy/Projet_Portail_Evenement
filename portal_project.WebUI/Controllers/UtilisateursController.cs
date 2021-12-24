@@ -2,6 +2,7 @@
 using portal_project.Models;
 using portal_project.Service;
 using portal_project.ViewModels;
+using portal_project.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace portal_project.WebUI.Controllers
         }
 
         // GET: Utilisateur
+        [LoginFilter]
+        [AdminFilter]
         public ActionResult Index()
         {
             try
@@ -35,7 +38,6 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
-
         public ActionResult Create()
         {
             UserAdresseViewModel u = new UserAdresseViewModel();
@@ -76,6 +78,7 @@ namespace portal_project.WebUI.Controllers
             }
         }
 
+        [LoginFilter]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -104,7 +107,7 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
-
+        [LoginFilter]
         public ActionResult Edit(int id)
         {
             try
@@ -119,6 +122,7 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
+        [LoginFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UserAdresseViewModel u,int id,string ConfirmPassword )
@@ -153,6 +157,8 @@ namespace portal_project.WebUI.Controllers
             }
         }
 
+        [LoginFilter]
+        [AdminFilter]
         public ActionResult Delete(int id)
         {
             try
@@ -166,6 +172,8 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
+        [LoginFilter]
+        [AdminFilter]
         [ActionName("Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -181,7 +189,6 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
-
         public ActionResult Login()
         {
             return View();
@@ -189,6 +196,8 @@ namespace portal_project.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        
         public ActionResult Login(string email, string password)
         {
             if (ModelState.IsValid)
@@ -213,7 +222,7 @@ namespace portal_project.WebUI.Controllers
                 return View();
             }
         }
-
+        
         public ActionResult Logout()
         {
             Session.Remove("User");
