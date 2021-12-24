@@ -29,7 +29,10 @@ namespace portal_project.Models
         [DataType(DataType.DateTime)]
         [Column(TypeName = "datetime2")]
         public DateTime DateUpload { get; set; }
-        public virtual Event PhotoEvent { get; set; }
+
+        [ForeignKey("PhotoEventId")]
+        public Event PhotoEvent { get; set; }
+        public int PhotoEventId { get; set; }
 
         public Photo()
         {

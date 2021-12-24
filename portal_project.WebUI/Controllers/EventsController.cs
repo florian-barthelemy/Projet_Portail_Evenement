@@ -129,7 +129,7 @@ namespace portal_project.WebUI.Controllers
                     string fileName = ev.Titre + extension;
                     string path = Server.MapPath("~/Images/" + fileName);  //Personaliser le nom de la photo
                     ev.PhotosEvent = new List<Photo>();
-                    ev.PhotosEvent.Add(new Photo { PhotoLocation = path, PhotoTitle = fileName, PhotoDescription = "Photo de " + ev.Titre, PhotoEvent = ev, DateUpload = DateTime.Now });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
+                    ev.PhotosEvent.Add(new Photo { PhotoLocation = path, PhotoTitle = fileName, PhotoDescription = "Photo de " + ev.Titre, PhotoEventId = ev.Id, DateUpload = DateTime.Now });  //Je met à jour ma propriété Photo de la classe Employe avec le nom personalisé
                                                                                                                                                                                            // /Content/Photos/user1.jpg
 
                     photo.SaveAs(path);
@@ -174,39 +174,41 @@ namespace portal_project.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EventAdresseViewModel model, int id, HttpPostedFileBase photo)
+        public ActionResult Edit(EventAdresseViewModel model, int id/*, HttpPostedFileBase photo*/)
         {
             if (ModelState.IsValid)
             {
 
-                if (photo != null)
-                {
-                    model.Event.PhotosEvent = photoService.getAllEventPhoto(model.Event);
-                    model.Photos = new List<Photo>();
-                    model.Photos.Add(photoService.findOneById(model.Event.PhotosEvent[0].Id));
-                    model.Photos[0].Id = model.Event.PhotosEvent[0].Id;
-                    model.Photos[0].PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
-                    string path = Server.MapPath("~/Images/" + model.Photos[0].PhotoTitle);
-                    model.Photos[0].PhotoLocation = path;
-                    model.Photos[0].PhotoDescription = "Photo de " + model.Event.Titre;
-                    model.Photos[0].DateUpload = DateTime.Now;
-
-                    photo.SaveAs(path);
-                }
-                else
-                {
-                    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
-                }
-                model.Event.PhotosEvent[0] = model.Photos[0];
+                //if (photo != null)
+                //{
+                //    model.Event.PhotosEvent = photoService.getAllEventPhoto(model.Event);
+                //    model.Photos = new List<Photo>();
+                //    model.Photos.Add(photoService.findOneById(model.Event.PhotosEvent[0].Id));
+                //    photoService.deletePhoto(model.Event.PhotosEvent[0].Id);
+                //    model.Photos[0].Id = model.Event.PhotosEvent[0].Id;
+                //    model.Photos[0].PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
+                //    string path = Server.MapPath("~/Images/" + model.Photos[0].PhotoTitle);
+                //    model.Photos[0].PhotoLocation = path;
+                //    model.Photos[0].PhotoDescription = "Photo de " + model.Event.Titre;
+                //    model.Photos[0].DateUpload = DateTime.Now;
+                //    model.Event.PhotosEvent.Add(model.Photos[0]);
+                //    photo.SaveAs(path);
+                //}
+                //else
+                //{
+                //    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
+                //}
+                
                 model.Event.Id = id;
                 model.Event.EventAdresseId = model.Adresse.Id;
 
-                List<Photo> lstPhotosToEdit = new List<Photo>();
-                lstPhotosToEdit = photoService.getAllEventPhoto(model.Event);
-                model.Event.PhotosEvent = lstPhotosToEdit;
+                //List<Photo> lstPhotosToEdit = new List<Photo>();
+                //lstPhotosToEdit = photoService.getAllEventPhoto(model.Event);
+                //model.Event.PhotosEvent = lstPhotosToEdit;
                 adresseService.editAdress(model.Adresse);
+                //photoService.editPhoto(model.Event.PhotosEvent[0]);
                 evService.editEvent(model.Event);
-                photoService.editPhoto(model.Photos[0]);
+                
 
                 return RedirectToAction("Index");
             }
