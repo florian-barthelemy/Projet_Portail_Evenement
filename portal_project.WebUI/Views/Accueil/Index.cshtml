@@ -53,7 +53,7 @@
         <div class="d-none">
             @foreach (var item in (IEnumerable<portal_project.Models.Event>)ViewData["events"])
             {
-                <div class="event-map-pt" data-longiX="@item.EventAdresse.Axe_X" data-latiY="@item.EventAdresse.Axe_Y" data-libelle="@item.Titre"></div>
+                <div class="event-map-pt" data-longiX="@item.EventAdresse.Axe_X" data-latiY="@item.EventAdresse.Axe_Y" data-libelle="@item.Titre" data-id="@item.Id"></div>
             }
         </div>
 

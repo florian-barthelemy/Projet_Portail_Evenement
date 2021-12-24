@@ -8,7 +8,8 @@ $(document).ready(function () {
         $(".event-map-pt").each(function (index) {
             let longi = $(this).attr("data-longix"); //x
             let lati = $(this).attr("data-latiy"); //y
-            let libelle = $(this).attr("data-libelle");
+            let id = $(this).attr("data-id"); //id
+            let libelle = "<a class=\"mapPopupLink\" href=\"/Events/Details/"+id+"\">"+$(this).attr("data-libelle")+"</a>";
             let marker = L.marker([lati, longi], { title: libelle }); //ajout marker
             marker.bindPopup(libelle);
             markers.addLayer(marker);
