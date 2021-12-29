@@ -174,26 +174,27 @@ namespace portal_project.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EventAdresseViewModel model, int id/*, HttpPostedFileBase photo*/)
+        public ActionResult Edit(EventAdresseViewModel model, int id, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
 
-                //if (photo != null)
-                //{
-                //    model.Event.PhotosEvent = photoService.getAllEventPhoto(model.Event);
+                if (photo != null)
+                {
+                   List<Photo> photos = photoService.getAllEventPhoto(model.Event);
                 //    model.Photos = new List<Photo>();
                 //    model.Photos.Add(photoService.findOneById(model.Event.PhotosEvent[0].Id));
                 //    photoService.deletePhoto(model.Event.PhotosEvent[0].Id);
                 //    model.Photos[0].Id = model.Event.PhotosEvent[0].Id;
-                //    model.Photos[0].PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
-                //    string path = Server.MapPath("~/Images/" + model.Photos[0].PhotoTitle);
-                //    model.Photos[0].PhotoLocation = path;
-                //    model.Photos[0].PhotoDescription = "Photo de " + model.Event.Titre;
-                //    model.Photos[0].DateUpload = DateTime.Now;
-                //    model.Event.PhotosEvent.Add(model.Photos[0]);
-                //    photo.SaveAs(path);
-                //}
+                    //photos[0].PhotoTitle = model.Event.Titre + Path.GetExtension(photo.FileName);
+                    string path = Server.MapPath("~/Images/" + photos[0].PhotoTitle);
+                    //photos[0].PhotoLocation = path;
+                    //photos[0].PhotoDescription = "Photo de " + model.Event.Titre;
+                    photos[0].DateUpload = DateTime.Now;
+                    //model.Event.PhotosEvent.Add(model.Photos[0]);
+                    photoService.editPhoto(photos[0]);
+                    photo.SaveAs(path);
+                }
                 //else
                 //{
                 //    return Content("L'extension de la photo doit être : .png, .jpg ou .jpeg");
@@ -226,7 +227,7 @@ namespace portal_project.WebUI.Controllers
             }
             else
             {
-                return View();
+                return View(e);
             }
         }
         [HttpPost]
