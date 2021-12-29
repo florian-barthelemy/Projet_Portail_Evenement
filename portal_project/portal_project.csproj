@@ -125,6 +125,10 @@
     <Compile Include="Migrations\202112240848234_AddForeignKeyPhotoEventId.designer.cs">
       <DependentUpon>202112240848234_AddForeignKeyPhotoEventId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112290928474_ajoutEventSousCatId.cs" />
+    <Compile Include="Migrations\202112290928474_ajoutEventSousCatId.designer.cs">
+      <DependentUpon>202112290928474_ajoutEventSousCatId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.cs" />
     <Compile Include="Migrations\202111121625133_InitialModel.designer.cs">
@@ -260,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112240848234_AddForeignKeyPhotoEventId.resx">
       <DependentUpon>202112240848234_AddForeignKeyPhotoEventId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112290928474_ajoutEventSousCatId.resx">
+      <DependentUpon>202112290928474_ajoutEventSousCatId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

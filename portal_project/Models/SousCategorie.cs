@@ -14,7 +14,9 @@ namespace portal_project.Models
         [Key]
         public int Id { get; set; }
         public string Libelle { get; set; }
-        public virtual Categorie EventCategorie { get; set; }
+        [ForeignKey("EventCategorieId")]
+        public Categorie EventCategorie { get; set; }
+        public int? EventCategorieId { get; set; }
         public virtual List<Event> EventList { get; set; }
 
         public SousCategorie()

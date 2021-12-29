@@ -21,13 +21,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                @if(Session["User"] != null &&(Session["User"] as UserLogViewModel).IsAdmin)
+                @if (Session["User"] != null && (Session["User"] as UserLogViewModel).IsAdmin)
                 {
                     <li class="nav-item">
                         @Html.ActionLink("Gestion utilisateurs", "Index", "Utilisateurs", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Gestion catégories", "Index", "Category", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Gestion catégories", "Index", "Categorie", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Gestion sous catégories", "Index", "SousCategorie", null, new { @class = "nav-link" })
                     </li>
                 }
             </ul>

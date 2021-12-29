@@ -1,0 +1,37 @@
+﻿@model IEnumerable<portal_project.Models.SousCategorie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p class="text-danger small">@ViewBag.error</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Libellé catégorie")
+        </th>
+        <th>@Html.DisplayName("Libellé sous catégorie")</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventCategorie.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Libelle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

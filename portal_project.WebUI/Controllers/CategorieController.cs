@@ -12,11 +12,11 @@ namespace portal_project.WebUI.Controllers
 {
     [LoginFilter]
     [AdminFilter]
-    public class CategoryController : Controller
+    public class CategorieController : Controller
     {
         CategorieService categoryService;
 
-        public CategoryController()
+        public CategorieController()
         {
             categoryService = new CategorieService(new CategorieImpl());
         }
