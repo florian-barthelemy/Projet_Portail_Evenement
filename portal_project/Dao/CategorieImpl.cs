@@ -35,7 +35,7 @@ namespace portal_project.Dao
 
         public Categorie findOneById(int id)
         {
-            return context.Categories.SingleOrDefault(e => e.Id == id);
+            return context.Categories.AsNoTracking().SingleOrDefault(e => e.Id == id);
         }
 
         public List<Categorie> getAllCategories()

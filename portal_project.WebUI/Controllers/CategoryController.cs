@@ -116,5 +116,36 @@ namespace portal_project.WebUI.Controllers
                 return View(categorie);
             }
         }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                Categorie categorie = categoryService.findOneById(id);
+                return View(categorie);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(int id)
+        {
+            try
+            {
+                categoryService.deleteCategorie(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
     }
 }
