@@ -213,6 +213,9 @@
     <Content Include="Views\Categorie\Delete.cshtml" />
     <Content Include="Views\SousCategorie\Index.cshtml" />
     <Content Include="Views\SousCategorie\Create.cshtml" />
+    <Content Include="Views\SousCategorie\Details.cshtml" />
+    <Content Include="Views\SousCategorie\Edit.cshtml" />
+    <Content Include="Views\SousCategorie\Delete.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -229,7 +232,6 @@
     <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\leaflet\" />
-    <Folder Include="Views\SousCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

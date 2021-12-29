@@ -30,7 +30,7 @@ namespace portal_project.WebUI.Controllers
             try
             {
                 List<SousCategorie> sousCategories = sousCategorieService.getAllSousCategories();
-                foreach(SousCategorie sousCategorie in sousCategories)
+                foreach (SousCategorie sousCategorie in sousCategories)
                 {
                     sousCategorie.EventCategorie = CategorieService.findOneById(Convert.ToInt32(sousCategorie.EventCategorieId));
                 }
@@ -51,7 +51,7 @@ namespace portal_project.WebUI.Controllers
                 ViewData["cats"] = CategorieService.getAllCategories();
                 return View(sousCategorie);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
                 return View();
@@ -80,5 +80,93 @@ namespace portal_project.WebUI.Controllers
                 return View(sousCategorie);
             }
         }
+
+        public ActionResult Details(int? id)
+        {
+            try
+            {
+                SousCategorie sousCategorie = sousCategorieService.findOneById(Convert.ToInt32(id));
+                sousCategorie.EventCategorie = CategorieService.findOneById(Convert.ToInt32(sousCategorie.EventCategorieId));
+                return View(sousCategorie);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            try
+            {
+                SousCategorie sousCategorie = sousCategorieService.findOneById(Convert.ToInt32(id));
+                ViewData["cats"] = CategorieService.getAllCategories();
+                return View(sousCategorie);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SousCategorie sousCategorie, int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    sousCategorie.Id = Convert.ToInt32(id);
+                    sousCategorieService.editSousCategorie(sousCategorie);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    return View(sousCategorie);
+                }
+            }
+            else
+            {
+                return View(sousCategorie);
+            }
+            }
+
+        public ActionResult Delete(int? id)
+        {
+            try
+            {
+                SousCategorie sousCategorie = sousCategorieService.findOneById(Convert.ToInt32(id));
+                sousCategorie.EventCategorie = CategorieService.findOneById(Convert.ToInt32(sousCategorie.EventCategorieId));
+                return View(sousCategorie);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
     }
-}
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(int? id)
+        {
+            try
+            {
+                sousCategorieService.deleteSousCategorie(Convert.ToInt32(id));
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+
+        }
+    }
